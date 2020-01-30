@@ -124,5 +124,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # medya dosyaları bu dizin altınd
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'kullanici.Kullanici'  # hangi model ile auth işlemlerini yapabileceğimizi belirledik. app_adi.model_adi
-LOGIN_URL = '/kullanici/login/'  # login required gibi işlemlerde nereye redirect yapacağını belirledik
+LOGIN_URL = '/kullanici/giris_yap/'  # login required gibi işlemlerde nereye redirect yapacağını belirledik
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # browser aç-kapa yapılınca tekrar login required olur!

@@ -5,8 +5,8 @@ from takim.models import Takim
 
 class Kullanici(AbstractUser):
     profil_foto = models.ImageField(upload_to='profil/foto/',default='defaults/default.png')
-    lokasyon = models.CharField(max_length=255)
-    bio = models.TextField()
+    lokasyon = models.CharField(max_length=255,null=True,blank=True)
+    bio = models.TextField(null=True,blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='izinler',null=True,blank=True)  # zorunlu tanımlamamız gerek
     groups = models.ManyToManyField(Group, related_name='gruplar',null=True,blank=True)  # zorunlu tanımlamamız gerek
     takimlar = models.ManyToManyField(Takim, related_name='takimlar',null=True,blank=True)
