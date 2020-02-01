@@ -7,5 +7,6 @@ urlpatterns = [
     path('kayit_ol/', views.kayit_ol, name='kayit_ol'),
     path('giris_yap/', views.giris_yap, name='giris_yap'),
     path('cikis_yap/', views.cikis_yap, name='cikis_yap'),
-    path('profile/<str:kname>/', views.profile, name='profile'),
+    path('kullanici/', views.kullanici, name='kullanici'),
+    path('kullanici/guncelle/', views.kullanici_guncelle, name='kullanici_guncelle'),
 ]

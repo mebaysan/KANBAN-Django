@@ -3,6 +3,7 @@ from django.contrib import messages
 from kullanici.models import Kullanici
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 
 
 def kayit_ol(request):
@@ -36,7 +37,7 @@ def giris_yap(request):
         if user != None:  # eğer user nesnesi varsa
             login(request, user)  # login yaptık
             messages.success(request, 'Sayın {} başarıyla giriş yaptınız'.format(username))
-            return redirect(reverse('kullanici:profile', kwargs={'kname': user.username}))
+            return redirect('kullanici:kullanici')
         else:
             messages.warning(request, 'Kullanıcı bulunamadığından giriş yapılamadı.')
             return redirect('kullanici:giris_yap')
@@ -45,15 +46,45 @@ def giris_yap(request):
 
 @login_required
 def cikis_yap(request):
+    username = request.user.username
     logout(request)
-    messages.success(request, 'Başarıyla çıkış yapıldı.')
+    messages.success(request, 'Sayın {},Başarıyla çıkış yapıldı.'.format(username))
     return redirect('kullanici:giris_yap')
 
 
 @login_required
-def profile(request, kname):
-    kullanici = Kullanici.objects.get(username=kname)
+def kullanici(request):
+    kullanici = request.user
     context = {
         'kullanici': kullanici
     }
     return render(request, 'kullanici/profile.html', context=context)
+
+
+@login_required
+@require_http_methods(['POST'])
+def kullanici_guncelle(request):
+    kullanici = request.user
+    ad = request.POST.get('ad')
+    soyad = request.POST.get('soyad')
+    email = request.POST.get('email')
+    lokasyon = request.POST.get('lokasyon')
+    bio = request.POST.get('bio')
+    try:
+        profil_foto = request.FILES['profil_foto']
+    except:
+        profil_foto = kullanici.profil_foto
+    if not ad: ad = request.user.first_name
+    if not soyad: soyad = request.user.last_name
+    if not email: email = request.user.email
+    if not lokasyon: lokasyon = request.user.lokasyon
+    if not bio: bio = request.user.bio
+    kullanici.first_name = ad
+    kullanici.last_name = soyad
+    kullanici.email = email
+    kullanici.lokasyon = lokasyon
+    kullanici.bio = bio
+    kullanici.profil_foto = profil_foto
+    kullanici.save()
+    messages.success(request, 'Sayın {}, Profiliniz başarıyla güncellendi.'.format(request.user.username))
+    return redirect('kullanici:kullanici')

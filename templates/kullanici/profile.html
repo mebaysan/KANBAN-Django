@@ -2,5 +2,25 @@
 {% load static %}
 
 {% block icerik %}
-<h1>Hoşgeldin {{ kullanici.username }}</h1>
+    <h1>Hoşgeldin {{ kullanici.username }}</h1>
+    <ul>
+        <li>Ad: {{ kullanici.first_name }}</li>
+        <li>Soyad: {{ kullanici.last_name }}</li>
+        <li>Lokasyon: {{ kullanici.lokasyon }}</li>
+        <li>Bio: {{ kullanici.bio }}</li>
+    </ul>
+    <img src="{{ kullanici.profil_foto.url }}" alt="">
+    <br><br><br><br>
+    <button><a style="text-decoration: none;" href="{% url 'kullanici:cikis_yap' %}">Çıkış Yap</a></button>
+    <br><br><br><br>
+    <form action="{% url 'kullanici:kullanici_guncelle' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+        <input type="text" placeholder="Ad" name="ad">
+        <input type="text" placeholder="SoyAd" name="soyad">
+        <input type="email" placeholder="Email" name="email">
+        <input type="text" placeholder="Lokasyon" name="lokasyon">
+        <input type="text" placeholder="Bio" name="bio">
+        <input type="file" name="profil_foto">
+        <input type="submit" value="Güncelle">
+    </form>
 {% endblock %}
