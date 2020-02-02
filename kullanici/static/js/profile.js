@@ -18,4 +18,3 @@ $('#sifre_guncelle_btn').click((e) => {
 
     }
 });
-//toDo: Eski şifre kontrolü yap!

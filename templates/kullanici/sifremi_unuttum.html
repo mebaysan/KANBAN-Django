@@ -1,0 +1,11 @@
+{% extends 'utilities/layout.html' %}
+{% load static %}
+{% block icerik %}
+    <form action="{% url 'kullanici:kullanici_sifremi_unuttum_onay' hash=kullanici.password_reset_hash %}"
+          method="post">
+    {% csrf_token %}
+        <input type="password" placeholder="Yeni Şifre" name="yeni_sifre">
+        <input type="password" placeholder="Eski Şifre" name="eski_sifre">
+        <input type="submit" value="Gönder">
+    </form>
+{% endblock %}

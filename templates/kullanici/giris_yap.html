@@ -7,4 +7,10 @@
         <input type="password" placeholder="Şifre" name="password" id="password" required>
         <input type="submit" value="Giriş">
     </form>
+    <br><br><br><br><br><br><br>
+    <form action="{% url 'kullanici:kullanici_sifremi_unuttum' %}" method="post">
+    {% csrf_token %}
+        <input type="email" name="email" placeholder="Mail adresiniz">
+        <input type="submit" value="Gönder">
+    </form>
 {% endblock %}
