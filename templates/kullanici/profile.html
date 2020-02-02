@@ -14,7 +14,7 @@
     <button><a style="text-decoration: none;" href="{% url 'kullanici:cikis_yap' %}">Çıkış Yap</a></button>
     <br><br><br><br>
     <form action="{% url 'kullanici:kullanici_guncelle' %}" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         <input type="text" placeholder="Ad" name="ad">
         <input type="text" placeholder="SoyAd" name="soyad">
         <input type="email" placeholder="Email" name="email">
@@ -23,4 +23,15 @@
         <input type="file" name="profil_foto">
         <input type="submit" value="Güncelle">
     </form>
+    <br><br><br>
+    <form action="{% url 'kullanici:kullanici_sifre_guncelle' %}" method="post" id="sifre_guncelle_form">
+        {% csrf_token %}
+        <input type="password" name="eski_sifre" placeholder="Eski Şifre" id="eski_sifre">
+        <input type="password" name="yeni_sifre" placeholder="Yeni Şifre" id="yeni_sifre">
+        <input type="password" name="yeni_sifre_kontrol" placeholder="Yeni Şifre" id="yeni_sifre_kontrol">
+        <input type="submit" value="Şifre Güncelle" id="sifre_guncelle_btn">
+    </form>
+{% endblock %}
+{% block ozel_js %}
+    <script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}

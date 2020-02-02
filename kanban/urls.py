@@ -17,10 +17,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from kullanici.views import giris_yap
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('kullanici/', include('kullanici.urls')),
+                  path('kullanicilar/', include('kullanici.urls')),
+                  path('', giris_yap), # ana sayfa için
                   path('', include('gorev.urls')),
                   path('', include('takim.urls')),
                   path('', include('proje.urls')),

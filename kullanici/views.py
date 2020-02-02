@@ -4,6 +4,8 @@ from kullanici.models import Kullanici
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def kayit_ol(request):
@@ -71,10 +73,10 @@ def kullanici_guncelle(request):
     lokasyon = request.POST.get('lokasyon')
     bio = request.POST.get('bio')
     try:
-        profil_foto = request.FILES['profil_foto']
+        profil_foto = request.FILES['profil_foto']  # post edilen datadan fotoğrafı al
     except:
-        profil_foto = kullanici.profil_foto
-    if not ad: ad = request.user.first_name
+        profil_foto = kullanici.profil_foto  # eğer alamazsan gelmemiş demektir o zaman profil_foto değişkenini mevcut kullanıcının profil_foto'su ile set et
+    if not ad: ad = request.user.first_name  # eğer ad değişkeni yoksa, ad değişkenini oluştur ve değerini set et
     if not soyad: soyad = request.user.last_name
     if not email: email = request.user.email
     if not lokasyon: lokasyon = request.user.lokasyon
@@ -88,3 +90,27 @@ def kullanici_guncelle(request):
     kullanici.save()
     messages.success(request, 'Sayın {}, Profiliniz başarıyla güncellendi.'.format(request.user.username))
     return redirect('kullanici:kullanici')
+
+
+@login_required
+@require_http_methods(['POST'])
+def kullanici_sifre_guncelle(request):
+    kullanici = request.user
+    yeni_sifre = request.POST.get('yeni_sifre')
+    kullanici.set_password(yeni_sifre)
+    kullanici.save()
+    konu = 'Şifre Güncellemesi Hakkında'
+    mesaj = 'Sayın {} şifreniz başarıyla güncellenmiştir. Bu işlemden haberiniz yoksa destek ekip ile irtibata geçmeniz gerekmektedir.'.format(
+        kullanici.username)
+    gonderen = settings.EMAIL_HOST_USER  # kimden göndereceğimizi settings dosyamız içerisinde belirlediğimiz mail servisimizin HOST_USER'ı olarak belirledik
+    giden = [kullanici.email]  # mailin gideceği listeyi LİSTE tipinde vermeliyiz
+    send_mail(konu, mesaj, gonderen, giden)  # django'nun mail fonksiyonunu kullanıyoruz
+    messages.success(request, 'Sayın {}, Şifreniz başarıyla güncellendi.Yeni şifre ile giriş yapabilirsiniz'.format(
+        request.user.username))
+    return redirect('kullanici:giris_yap')
+
+
+def kullanici_sifremi_unuttum(request):
+    #toDO: şifremi unuttum view yazılacak!
+    messages.success(request, 'Şifrenizi güncellemeniz için gerekli mail tarafınıza iletilmiştir.')
+    return redirect('kullanici:giris_yap')
