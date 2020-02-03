@@ -13,7 +13,7 @@ class Gorev(models.Model):
     baslama_tarihi = models.DateField()
     bitis_tarihi = models.DateField()
     proje = models.ForeignKey(Proje, related_name='gorevler', on_delete=models.SET_NULL, null=True)
-    sahip = models.ForeignKey(Kullanici,related_name='sahip',on_delete=models.SET_NULL,null=True)
+    uyeler = models.ManyToManyField(to='kullanici.Kullanici',related_name='gorevler',null=True)
     class Meta:
         verbose_name= 'Görev'
         verbose_name_plural = 'Görevler'
@@ -41,7 +41,7 @@ class Not(models.Model):
     ad = models.CharField(max_length=255)
     aciklama = models.TextField()
     olusturulma_tarihi = models.DateTimeField(auto_now_add=True)
-    yazar = models.ForeignKey(Kullanici, related_name='notlar', on_delete=models.SET_NULL, null=True)
+    kullanici = models.ForeignKey(Kullanici, related_name='notlar', on_delete=models.SET_NULL, null=True)
     class Meta:
         verbose_name= 'Not'
         verbose_name_plural = 'Notlar'
@@ -51,8 +51,6 @@ class Not(models.Model):
 
 class Dosya(models.Model):
     gorev = models.ForeignKey(Gorev, related_name='dosyalar', on_delete=models.SET_NULL, null=True)
-    ad = models.CharField(max_length=255)
-    tip = models.CharField(max_length=255)
     dosya = models.FileField(upload_to='gorevler/dosyalar/')
     class Meta:
         verbose_name= 'Dosya'

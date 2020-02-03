@@ -12,6 +12,8 @@ from proje.models import Proje
 from gorev.models import Gorev
 from django.http import request
 
+from takim.models import Takim
+
 
 def kayit_ol(request):
     if request.method == 'POST':
@@ -67,8 +69,8 @@ def cikis_yap(request):
 def kullanici(request):
     kullanici = request.user
     takimlar = kullanici.takimlar.all()
-    projeler = Proje.objects.filter(sahip=kullanici)
-    gorevler = Gorev.objects.filter(sahip=kullanici)
+    projeler = kullanici.projeler.all()
+    gorevler = kullanici.gorevler.all()
     context = {
         'kullanici': kullanici,
         'takimlar': takimlar,

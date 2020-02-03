@@ -5,7 +5,7 @@ from django.db import models
 class Takim(models.Model):
     ad = models.CharField(max_length=255)
     aciklama = models.TextField()
-    uyeler = models.ManyToManyField(to='kullanici.Kullanici',related_name='uyeler',null=True)
+    uyeler = models.ManyToManyField(to='kullanici.Kullanici',related_name='takimlar',null=True)
 
     class Meta:
         verbose_name = 'Takım'
