@@ -8,10 +8,10 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.hashers import check_password
 import hashlib
+from kanban.settings import BASE_URL
 from proje.models import Proje
 from gorev.models import Gorev
 from django.http import request
-
 from takim.models import Takim
 
 
@@ -19,13 +19,12 @@ def kayit_ol(request):
     if request.method == 'POST':
         gelen_veri = {
             'email': request.POST['email'],
-            'username': request.POST['username'],
             'password': request.POST['password'],
             'password_check': request.POST.get('password_check'),
         }
-        if len(Kullanici.objects.filter(username=gelen_veri['username'])) == 0 and len(
+        if len(Kullanici.objects.filter(username=gelen_veri['email'])) == 0 and len(
                 Kullanici.objects.filter(email=gelen_veri['email'])) == 0:
-            kullanici = Kullanici(username=gelen_veri['username'], email=gelen_veri['email'])
+            kullanici = Kullanici(username=gelen_veri['email'], email=gelen_veri['email'])
             kullanici.set_password(gelen_veri['password'])
             kullanici.save()
             messages.success(request, 'Başarıyla Kayıt Oldunuz...')
@@ -97,7 +96,7 @@ def kullanici_guncelle(request):
     if not soyad: soyad = request.user.last_name
     if not email: email = request.user.email
     if not lokasyon: lokasyon = request.user.lokasyon
-    if not title: bio = request.user.title
+    if not title: title = request.user.title
     kullanici.first_name = ad
     kullanici.last_name = soyad
     kullanici.email = email
@@ -146,7 +145,7 @@ def kullanici_sifremi_unuttum(request):
     hashlenen_bilgi = hashlib.sha256("{}".format(email).encode('utf-8')).hexdigest() # kullanıcıya token oluşturuyoruz
     kullanici.password_reset_hash = hashlenen_bilgi
     kullanici.save()
-    link = "http://127.0.0.1:8000/kullanıcılar/sifre/sifremi-unuttum/onay/{}".format(hashlenen_bilgi)
+    link = BASE_URL + reverse('kullanici:kullanici_sifremi_unuttum_onay',kwargs={'hash':hashlenen_bilgi})
     konu = 'Şifre Güncellemesi Hakkında'
     mesaj = 'Sayın {} şifrenizi güncellemeniz için gerekli link ektedir. Bu işlemden haberiniz yoksa destek ekip ile iletişime geçmelisiniz.\nLink:{}'.format(
         kullanici.username, link)

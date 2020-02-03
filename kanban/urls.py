@@ -21,7 +21,7 @@ from kullanici.views import giris_yap
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('kullanıcılar/', include('kullanici.urls')),
+                  path('kullanicilar/', include('kullanici.urls')),
                   path('', giris_yap), # ana sayfa için
                   path('', include('gorev.urls')),
                   path('takımlar/', include('takim.urls')),

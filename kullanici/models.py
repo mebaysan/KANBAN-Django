@@ -11,6 +11,7 @@ class Kullanici(AbstractUser):
                                               blank=True)  # zorunlu tanımlamamız gerek
     groups = models.ManyToManyField(Group, related_name='gruplar', null=True, blank=True)  # zorunlu tanımlamamız gerek
     password_reset_hash = models.TextField(null=True, blank=True)
+    invite_token = models.TextField(null=True,blank=True)
 
     class Meta:
         verbose_name = 'Kullanıcı'

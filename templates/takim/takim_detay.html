@@ -12,8 +12,37 @@
     <ul>
         <h4>Projeler</h4>
         {% for proje in projeler %}
-            <li><a href="{% url 'proje:proje_detay' proje_slug=proje.slug %}">{{ proje.ad }}   |   Görev Durumu : {{ proje|proje_kac_gorev_var }}</a></li>
+            <li><a href="{% url 'proje:proje_detay' proje_slug=proje.slug %}">{{ proje.ad }} | Görev Durumu
+                : {{ proje|proje_kac_gorev_var }}</a></li>
         {% endfor %}
 
     </ul>
+    <h4>Üye Ekle</h4>
+    <form action="{% url 'takim:takim_uye_ekle' takim_slug=takim.slug %}" method="post">
+    {% csrf_token %}
+        <input type="email" placeholder="Eklemek İstediğiniz Üyenin Mail Adresi" name="email">
+        <input type="submit" value="Gönder">
+    </form>
+    <hr>
+    <br>
+    <h4>Proje Ekle</h4>
+    <form action="{% url 'proje:proje_ekle' takim_slug=takim.slug %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Proje Adı" name="ad">
+        <input type="text" placeholder="Proje Açıklaması" name="aciklama">
+        <input type="date" placeholder="Proje Başlangıç Tarihi" name="baslangic_tarih">
+        <input type="date" placeholder="Proje Bitiş Tarihi" name="bitis_tarih">
+        <select name="gizlilik">
+            <option value="herkese_acik">Herkese Açık</option>
+            <option value="takim_uyeleri">Sadece Takım Üyeleri</option>
+            <option value="sadece_ben">Sadece Bana Özel</option>
+        </select>
+        <select name="uyeler" multiple>
+            {% for uye in uyeler %}
+                <option value="{{ uye.username }}">{{ uye.username }}</option>
+            {% endfor %}
+
+        </select>
+        <input type="submit" value="Gönder">
+    </form>
 {% endblock %}

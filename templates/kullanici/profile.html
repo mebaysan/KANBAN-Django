@@ -33,46 +33,54 @@
     </form>
     <hr>
     <ul>
-    <h4>Görevler</h4>
+        <h4>Görevler</h4>
         {% for gorev in gorevler %}
             <li>{{ gorev.ad }}</li>
             <ul>
-            Görev Üyeleri
-            {% for uye in gorev.uyeler.all %}
-        <li>{{ uye }}</li>
-            {% endfor %}
+                Görev Üyeleri
+                {% for uye in gorev.uyeler.all %}
+                    <li>{{ uye }}</li>
+                {% endfor %}
 
             </ul>
         {% endfor %}
     </ul>
     <hr>
     <ul>
-    <h4>Projeler</h4>
+        <h4>Projeler</h4>
         {% for proje in projeler %}
-            <li>{{ proje.ad }}   | Görev Durumu: {{ proje|proje_kac_gorev_var }}</li>
+            <li>{{ proje.ad }} | Görev Durumu: {{ proje|proje_kac_gorev_var }}</li>
             <ul>
                 Proje Üyeleri
-            {% for uye in proje.takim.uyeler.all %}
-                <li>{{ uye }}</li>
-            {% endfor %}
+                {% for uye in proje.takim.uyeler.all %}
+                    <li>{{ uye }}</li>
+                {% endfor %}
 
             </ul>
         {% endfor %}
     </ul>
     <hr>
     <ul>
-    <h4>Takımlar</h4>
+        <h4>Takımlar</h4>
         {% for takim in takimlar %}
-            <li><a href="{% url 'takim:takim_detay' takim_slug=takim.slug %}">{{ takim.ad }}  |  Proje Sayısı : {{ takim.projeler.count }}  | Üye Sayısı : {{ takim.uyeler.count }}</a></li>
-           <ul>
-           {% for proje in takim.projeler.all %}
-                <li>{{ proje }}</li>
-           {% endfor %}
+            <li><a href="{% url 'takim:takim_detay' takim_slug=takim.slug %}">{{ takim.ad }} | Proje Sayısı
+                : {{ takim.projeler.count }} | Üye Sayısı : {{ takim.uyeler.count }}</a></li>
+            <ul>
+                {% for proje in takim.projeler.all %}
+                    <li>{{ proje }}</li>
+                {% endfor %}
 
-           </ul>
+            </ul>
         {% endfor %}
     </ul>
-
+    <br>
+    <h3>Takım Oluştur</h3>
+    <form action="{% url 'takim:takim_olustur' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Takım Adı" name="ad">
+        <input type="text" placeholder="Takım Açıklaması" name="aciklama">
+        <input type="submit">
+    </form>
 
 {% endblock %}
 {% block ozel_js %}
