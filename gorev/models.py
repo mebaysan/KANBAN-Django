@@ -13,6 +13,7 @@ class Gorev(models.Model):
     baslama_tarihi = models.DateField()
     bitis_tarihi = models.DateField()
     proje = models.ForeignKey(Proje, related_name='gorevler', on_delete=models.SET_NULL, null=True)
+    sahip = models.ForeignKey(Kullanici,related_name='sahip',on_delete=models.SET_NULL,null=True)
     class Meta:
         verbose_name= 'Görev'
         verbose_name_plural = 'Görevler'

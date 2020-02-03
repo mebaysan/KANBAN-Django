@@ -4,5 +4,5 @@ from takim import views
 app_name = 'takim'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('detay/<str:takim_adi>/', views.takim_detay, name='takim_detay'),
 ]

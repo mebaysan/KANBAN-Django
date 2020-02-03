@@ -1,0 +1,18 @@
+{% extends 'utilities/layout.html' %}
+{% load static %}
+{% block icerik %}
+    <h1>{{ takim.ad }}</h1>
+    <ul>
+        <h4>Takım Üyeleri</h4>
+        {% for uye in uyeler %}
+            <li>{{ uye.username }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <h4>Projeler</h4>
+        {% for proje in projeler %}
+            <li><a href="{% url 'proje:proje_detay' proje_adi=proje.ad %}">{{ proje.ad }}</a></li>
+        {% endfor %}
+
+    </ul>
+{% endblock %}

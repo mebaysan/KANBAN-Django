@@ -8,6 +8,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.hashers import check_password
 import hashlib
+from proje.models import Proje
+from gorev.models import Gorev
+from django.http import request
 
 
 def kayit_ol(request):
@@ -63,8 +66,14 @@ def cikis_yap(request):
 @login_required
 def kullanici(request):
     kullanici = request.user
+    takimlar = kullanici.takimlar.all()
+    projeler = Proje.objects.filter(sahip=kullanici)
+    gorevler = Gorev.objects.filter(sahip=kullanici)
     context = {
-        'kullanici': kullanici
+        'kullanici': kullanici,
+        'takimlar': takimlar,
+        'projeler': projeler,
+        'gorevler': gorevler
     }
     return render(request, 'kullanici/profile.html', context=context)
 
@@ -77,7 +86,7 @@ def kullanici_guncelle(request):
     soyad = request.POST.get('soyad')
     email = request.POST.get('email')
     lokasyon = request.POST.get('lokasyon')
-    bio = request.POST.get('bio')
+    title = request.POST.get('title')
     try:
         profil_foto = request.FILES['profil_foto']  # post edilen datadan fotoğrafı al
     except:
@@ -86,12 +95,12 @@ def kullanici_guncelle(request):
     if not soyad: soyad = request.user.last_name
     if not email: email = request.user.email
     if not lokasyon: lokasyon = request.user.lokasyon
-    if not bio: bio = request.user.bio
+    if not title: bio = request.user.title
     kullanici.first_name = ad
     kullanici.last_name = soyad
     kullanici.email = email
     kullanici.lokasyon = lokasyon
-    kullanici.bio = bio
+    kullanici.title = title
     kullanici.profil_foto = profil_foto
     kullanici.save()
     messages.success(request, 'Sayın {}, Profiliniz başarıyla güncellendi.'.format(request.user.username))
@@ -126,16 +135,16 @@ def kullanici_sifre_guncelle(request):
 def kullanici_sifremi_unuttum(request):
     email = request.POST.get('email')
     try:
-        kullanici = Kullanici.objects.get(email=email)
+        kullanici = Kullanici.objects.get(email=email) # gelen epostaya sahip kullanıcı var mı
     except:
         messages.warning(request, 'Eposta adresi bulunamadığından işlem gerçekleştirilemedi')
         return redirect('kullanici:giris_yap')
     kullanici.set_password('Geçici Şifre')  # Bir stringi hashleyerek kullanıcının şifresi yapıyoruz
     username = kullanici.username
-    hashlenen_bilgi = hashlib.sha256("{}".format(email).encode('utf-8')).hexdigest()
+    hashlenen_bilgi = hashlib.sha256("{}".format(email).encode('utf-8')).hexdigest() # kullanıcıya token oluşturuyoruz
     kullanici.password_reset_hash = hashlenen_bilgi
     kullanici.save()
-    link = "http://127.0.0.1:8000/kullanicilar/sifre/sifremi-unuttum/onay/{}".format(hashlenen_bilgi)
+    link = "http://127.0.0.1:8000/kullanıcılar/sifre/sifremi-unuttum/onay/{}".format(hashlenen_bilgi)
     konu = 'Şifre Güncellemesi Hakkında'
     mesaj = 'Sayın {} şifrenizi güncellemeniz için gerekli link ektedir. Bu işlemden haberiniz yoksa destek ekip ile iletişime geçmelisiniz.\nLink:{}'.format(
         kullanici.username, link)

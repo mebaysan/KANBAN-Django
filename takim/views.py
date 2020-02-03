@@ -1,21 +1,19 @@
 from django.shortcuts import render
+from takim.models import Takim
 from proje.models import Proje
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
-def index(request):
-    proje = Proje.objects.first()
-    gorev = proje.gorevler.first()
-    islem = gorev.islemler.first()
-    note = gorev.notlar.first()
-    dosya = gorev.dosyalar.first()
+@login_required
+def takim_detay(request, takim_adi):
+    takim = Takim.objects.get(ad=takim_adi)
+    projeler = Proje.objects.filter(takim=takim)
+    uyeler = takim.uyeler.all()
     context = {
-        'proje': proje,
-        'gorev': gorev,
-        'islem': islem,
-        'not': note,
-        'dosya': dosya,
+        'takim': takim,
+        'projeler':projeler,
+        'uyeler':uyeler
     }
-    return render(request, 'index.html', context=context)
+    return render(request, 'takim/takim_detay.html', context=context)

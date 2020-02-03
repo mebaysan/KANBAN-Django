@@ -19,7 +19,7 @@
         <input type="text" placeholder="SoyAd" name="soyad">
         <input type="email" placeholder="Email" name="email">
         <input type="text" placeholder="Lokasyon" name="lokasyon">
-        <input type="text" placeholder="Bio" name="bio">
+        <input type="text" placeholder="Ünvan" name="title">
         <input type="file" name="profil_foto">
         <input type="submit" value="Güncelle">
     </form>
@@ -31,6 +31,29 @@
         <input type="password" name="yeni_sifre_kontrol" placeholder="Yeni Şifre" id="yeni_sifre_kontrol">
         <input type="submit" value="Şifre Güncelle" id="sifre_guncelle_btn">
     </form>
+    <hr>
+    <ul>
+    <h4>Görevler</h4>
+        {% for gorev in gorevler %}
+            <li>{{ gorev.ad }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+    <h4>Projeler</h4>
+        {% for proje in projeler %}
+            <li>{{ proje.ad }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+    <h4>Takımlar</h4>
+        {% for takim in takimlar %}
+            <li><a href="{% url 'takim:takim_detay' takim_adi=takim.ad %}">{{ takim.ad }}</a></li>
+        {% endfor %}
+    </ul>
+
+
 {% endblock %}
 {% block ozel_js %}
     <script src="{% static 'js/profile.js' %}"></script>

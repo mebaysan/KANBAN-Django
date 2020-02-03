@@ -1,0 +1,18 @@
+{% extends 'utilities/layout.html' %}
+{% load static %}
+{% block icerik %}
+    <h1>{{ proje.ad }} | Projesi</h1>
+    <ul>
+        <h4>Görevler</h4>
+        {% for gorev in gorevler %}
+            <li>{{ gorev.ad }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <h4>Dosyalar</h4>
+        {% for dosya in dosyalar %}
+            <li>{{ dosya.ad }} | {{ dosya.dosya }}</li>
+        {% endfor %}
+
+    </ul>
+{% endblock %}
