@@ -63,7 +63,7 @@
     <ul>
     <h4>Takımlar</h4>
         {% for takim in takimlar %}
-            <li><a href="{% url 'takim:takim_detay' takim_adi=takim.ad %}">{{ takim.ad }}  |  Proje Sayısı : {{ takim.projeler.count }}  | Üye Sayısı : {{ takim.uyeler.count }}</a></li>
+            <li><a href="{% url 'takim:takim_detay' takim_slug=takim.slug %}">{{ takim.ad }}  |  Proje Sayısı : {{ takim.projeler.count }}  | Üye Sayısı : {{ takim.uyeler.count }}</a></li>
            <ul>
            {% for proje in takim.projeler.all %}
                 <li>{{ proje }}</li>

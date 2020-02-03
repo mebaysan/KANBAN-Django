@@ -7,8 +7,8 @@ from proje.models import Proje
 
 
 @login_required
-def proje_detay(request, proje_adi):
-    proje = Proje.objects.get(ad=proje_adi)
+def proje_detay(request, proje_slug):
+    proje = Proje.objects.get(slug=proje_slug)
     gorevler = Gorev.objects.filter(proje=proje)
     dosyalar = []
     for gorev in gorevler:

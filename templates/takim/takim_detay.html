@@ -1,5 +1,6 @@
 {% extends 'utilities/layout.html' %}
 {% load static %}
+{% load gorev_sorgulama %}
 {% block icerik %}
     <h1>{{ takim.ad }}</h1>
     <ul>
@@ -11,7 +12,7 @@
     <ul>
         <h4>Projeler</h4>
         {% for proje in projeler %}
-            <li><a href="{% url 'proje:proje_detay' proje_adi=proje.ad %}">{{ proje.ad }}</a></li>
+            <li><a href="{% url 'proje:proje_detay' proje_slug=proje.slug %}">{{ proje.ad }}   |   Görev Durumu : {{ proje|proje_kac_gorev_var }}</a></li>
         {% endfor %}
 
     </ul>

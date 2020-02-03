@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
-def takim_detay(request, takim_adi):
-    takim = Takim.objects.get(ad=takim_adi)
+def takim_detay(request, takim_slug):
+    takim = Takim.objects.get(slug=takim_slug)
     projeler = Proje.objects.filter(takim=takim)
     uyeler = takim.uyeler.all()
     context = {
