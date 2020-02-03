@@ -7,11 +7,16 @@ from proje.models import Proje
 
 
 class Gorev(models.Model):
+    gorev_durumlari=(
+        ('bitti', 'Görev Bitti'),
+        ('devam', 'Görev Devam Ediyor')
+    )
     ad = models.CharField(max_length=255)
     aciklama = models.TextField()
     olusturulma_tarihi = models.DateTimeField(auto_now_add=True)
     baslama_tarihi = models.DateField()
     bitis_tarihi = models.DateField()
+    gorev_durum = models.CharField(max_length=5, choices=gorev_durumlari,default='devam')
     proje = models.ForeignKey(Proje, related_name='gorevler', on_delete=models.SET_NULL, null=True)
     uyeler = models.ManyToManyField(to='kullanici.Kullanici',related_name='gorevler',null=True)
     class Meta:

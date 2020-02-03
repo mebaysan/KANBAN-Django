@@ -1,6 +1,6 @@
 {% extends 'utilities/layout.html' %}
 {% load static %}
-
+{% load gorev_sorgulama %}
 {% block icerik %}
     <h1>Hoşgeldin {{ kullanici.username }}</h1>
     <ul>
@@ -49,7 +49,7 @@
     <ul>
     <h4>Projeler</h4>
         {% for proje in projeler %}
-            <li>{{ proje.ad }}</li>
+            <li>{{ proje.ad }}   | Görev Durumu: {{ proje|proje_kac_gorev_var }}</li>
             <ul>
                 Proje Üyeleri
             {% for uye in proje.takim.uyeler.all %}
