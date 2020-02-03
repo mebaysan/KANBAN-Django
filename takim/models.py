@@ -2,12 +2,12 @@ from django.db import models
 from unidecode import unidecode
 from django.template.defaultfilters import slugify, safe
 
-
 # Create your models here.
 
 class Takim(models.Model):
     ad = models.CharField(max_length=255)
     aciklama = models.TextField()
+    sahip = models.ForeignKey(to='kullanici.Kullanici',related_name='sahip_oldugu_takimlar',on_delete=models.CASCADE)
     uyeler = models.ManyToManyField(to='kullanici.Kullanici', related_name='takimlar', null=True)
     slug = models.SlugField(blank=True)
 
