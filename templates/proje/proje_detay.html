@@ -3,24 +3,38 @@
 {% load gorev_sorgulama %}
 {% block icerik %}
     <h1>{{ proje.ad }} | Projesi</h1>
+    <span><a href="{% url 'proje:kanban_board' proje_slug=proje.slug %}">KanbanBoard</a></span>
     <ul>
         <h4>Görev Grupları</h4>
-        {% for gorev_grubu in gorev_gruplari %}
-            <li>{{ gorev_grubu.ad }}</li>
+        <li> Yapılacaklar
             <ul>
-                Görevler
-                {% for gorev in gorevler %}
-                    {% if gorev.gorev_grubu.id == gorev_grubu.id %}
-                        <li>
-                            <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
-                                | {{ gorev|gorev_kac_islem_var }}</a>
-                        </li>
-                    {% endif %}
+                {% for gorev in yapilacaklar %}
+                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
+                        | {{ gorev|gorev_kac_islem_var }}</a></li>
 
                 {% endfor %}
 
             </ul>
-        {% endfor %}
+        </li>
+        <li> Yapılmakta Olanlar
+            <ul>
+                {% for gorev in yapilanlar %}
+                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
+                        | {{ gorev|gorev_kac_islem_var }}</a></li>
+
+                {% endfor %}
+
+            </ul>
+        </li>
+        <li> Yapılanlar
+            <ul>
+                {% for gorev in bitenler %}
+                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
+                        | {{ gorev|gorev_kac_islem_var }}</a></li>
+                {% endfor %}
+
+            </ul>
+        </li>
     </ul>
     <ul>
         <h4>Dosyalar</h4>

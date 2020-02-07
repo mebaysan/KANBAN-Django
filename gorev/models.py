@@ -46,18 +46,19 @@ class GorevGrubu(models.Model):
 
 class Gorev(models.Model):
     gorev_durumlari = (
-        ('bitti', 'Görev Bitti'),
-        ('devam', 'Görev Devam Ediyor')
+        ('bitti', 'Görev Bitti'),       # Done
+        ('devam', 'Görev Devam Ediyor'), # InProgress
+        ('yapilacak','Görev Yapılmalı') # ToDos
     )
     ad = models.CharField(max_length=255)
     aciklama = models.TextField()
     olusturulma_tarihi = models.DateTimeField(auto_now_add=True)
     baslama_tarihi = models.DateField()
     bitis_tarihi = models.DateField()
-    gorev_durum = models.CharField(max_length=5, choices=gorev_durumlari, default='devam')
+    gorev_durum = models.CharField(max_length=11, choices=gorev_durumlari, default='yapilacak')
     proje = models.ForeignKey(Proje, related_name='gorevler', on_delete=models.SET_NULL, null=True)
     uyeler = models.ManyToManyField(to='kullanici.Kullanici', related_name='gorevler', null=True)
-    gorev_grubu = models.ForeignKey(to='gorev.GorevGrubu', related_name='gorevler', null=True, on_delete=models.CASCADE)
+    #gorev_grubu = models.ForeignKey(to='gorev.GorevGrubu', related_name='gorevler', null=True, on_delete=models.CASCADE)
     slug = models.SlugField(blank=True)
 
     class Meta:

@@ -1,0 +1,40 @@
+{% extends 'utilities/layout.html' %}
+{% load static %}
+{% load gorev_sorgulama %}
+{% block icerik %}
+    <h2>{{ proje.ad }}</h2>
+    <h5>{{ proje.aciklama }}</h5>
+    <hr>
+    <br>
+    <div>
+    <h4>Yapılması Gerekenler</h4>
+    <ul>
+{% for gorev in yapilacaklar %}
+                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
+                        | {{ gorev|gorev_kac_islem_var }}</a></li>
+
+                {% endfor %}
+
+            </ul>
+    </ul>
+    </div>
+    <div>
+    <h4>Yapılmakta Olanlar</h4>
+    <ul>
+{% for gorev in yapilanlar %}
+                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
+                        | {{ gorev|gorev_kac_islem_var }}</a></li>
+
+                {% endfor %}
+    </ul>
+    </div>
+    <div>
+    <h4>Yapılmış Olanlar</h4>
+    <ul>
+{% for gorev in bitenler %}
+                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
+                        | {{ gorev|gorev_kac_islem_var }}</a></li>
+                {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

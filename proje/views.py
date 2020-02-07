@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
@@ -12,15 +12,17 @@ from takim.models import Takim
 
 @login_required
 def proje_detay(request, proje_slug):
-    proje = Proje.objects.get(slug=proje_slug)
-    gorevler = Gorev.objects.filter(proje=proje)
-    gorev_gruplari = GorevGrubu.objects.filter(proje=proje)
+    proje = get_object_or_404(Proje, slug=proje_slug)
+    yapilacaklar = proje.gorevler.filter(gorev_durum='yapilacak')
+    yapilanlar = proje.gorevler.filter(gorev_durum='devam')
+    bitenler = proje.gorevler.filter(gorev_durum='bitti')
     dosyalar = ProjeDosya.objects.filter(proje=proje)
     context = {
         'proje': proje,
-        'gorev_gruplari': gorev_gruplari,
-        'gorevler': gorevler,
         'dosyalar': dosyalar,
+        'yapilacaklar': yapilacaklar,
+        'yapilanlar': yapilanlar,
+        'bitenler': bitenler
     }
     return render(request, 'proje/proje_detay.html', context=context)
 
@@ -45,3 +47,18 @@ def proje_ekle(request, takim_slug):
     yeni_proje.save()
     messages.success(request, 'Proje başarıyla oluşturuldu.')
     return redirect(reverse('takim:takim_detay', kwargs={'takim_slug': takim_slug}))
+
+
+@login_required
+def proje_kanban_board(request, proje_slug):
+    proje = get_object_or_404(Proje, slug=proje_slug)
+    yapilacaklar = proje.gorevler.filter(gorev_durum='yapilacak')
+    yapilanlar = proje.gorevler.filter(gorev_durum='devam')
+    bitenler = proje.gorevler.filter(gorev_durum='bitti')
+    context = {
+        'proje': proje,
+        'yapilacaklar': yapilacaklar,
+        'yapilanlar': yapilanlar,
+        'bitenler': bitenler
+    }
+    return render(request, 'proje/proje_kanban_board.html', context=context)

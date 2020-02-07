@@ -17,9 +17,8 @@ def gorev_ekle(request, proje_slug):
     baslama_tarihi = request.POST.get('baslama_tarihi')
     bitis_tarihi = request.POST.get('bitis_tarihi')
     uyeler = request.POST.getlist('uyeler')
-    gorev_grubu = request.POST.get('gorev_grubu')
     yeni_gorev = Gorev(ad=ad, aciklama=aciklama, baslama_tarihi=baslama_tarihi, bitis_tarihi=bitis_tarihi,
-                       gorev_grubu=GorevGrubu.objects.get(slug=gorev_grubu), proje=Proje.objects.get(slug=proje_slug))
+                       proje=Proje.objects.get(slug=proje_slug))
     yeni_gorev.save()
     for uye in uyeler:
         obj = Kullanici.objects.get(username=uye)
