@@ -1,5 +1,6 @@
 {% extends 'utilities/layout.html' %}
 {% load static %}
+{% load gorev_sorgulama %}
 {% block icerik %}
     <h1>{{ proje.ad }} | Projesi</h1>
     <ul>
@@ -11,7 +12,8 @@
                 {% for gorev in gorevler %}
                     {% if gorev.gorev_grubu.id == gorev_grubu.id %}
                         <li>
-                            <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}</a>
+                            <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
+                                | {{ gorev|gorev_kac_islem_var }}</a>
                         </li>
                     {% endif %}
 
@@ -30,7 +32,7 @@
     <hr>
     <br>
     <form action="{% url 'gorev:gorev_ekle' proje_slug=proje.slug %}" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         <input type="text" name="ad" placeholder="ad">
         <input type="text" name="aciklama" placeholder="aciklama">
         <input type="date" name="baslama_tarihi" placeholder="baslama_tarihi">

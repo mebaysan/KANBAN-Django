@@ -68,7 +68,7 @@ def cikis_yap(request):
 def kullanici(request):
     kullanici = request.user
     takimlar = kullanici.takimlar.all()
-    projeler = kullanici.projeler.all()
+    projeler = [proje for proje in kullanici.projeler.all()]
     gorevler = kullanici.gorevler.all()
     context = {
         'kullanici': kullanici,
