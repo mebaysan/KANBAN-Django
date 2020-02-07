@@ -4,17 +4,57 @@
     <list default="true" id="9ac3d78a-efbb-427c-832c-0abd8f318530" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kanban/local_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/local_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0002_gorev_proje.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0003_auto_20200129_0326.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0004_auto_20200129_0344.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0005_auto_20200129_0350.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0006_gorev_sahip.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0007_auto_20200203_1644.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0008_auto_20200203_1646.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0009_auto_20200203_1648.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0010_auto_20200203_1659.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0011_auto_20200203_1714.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0012_gorev_gorev_durum.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0013_gorev_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/migrations/0014_auto_20200203_1954.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kanban/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kanban/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kullanici/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/kullanici/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kullanici/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/kullanici/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proje/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/proje/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0002_kullanici_takimlar.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0003_auto_20200129_0326.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0004_auto_20200129_0339.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0005_auto_20200129_0341.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0006_kullanici_mail.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0007_remove_kullanici_mail.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0008_auto_20200130_1245.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0009_kullanici_password_reset_hash.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0010_auto_20200203_0236.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0011_kullanici_gorevler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0012_auto_20200203_1648.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/migrations/0013_kullanici_invite_token.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/proje/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/migrations/0002_auto_20200129_0326.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/migrations/0003_proje_sahip.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/migrations/0004_auto_20200203_1716.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/migrations/0005_proje_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/migrations/0006_auto_20200203_1954.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/proje/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proje/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/proje/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/takim/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/takim/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/takim/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/takim/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/kullanici/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/takim/takim_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/takim/takim_detay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/takim/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/takim/migrations/0002_auto_20200129_0326.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/takim/migrations/0003_takim_uyeler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/takim/migrations/0004_auto_20200203_0324.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/takim/migrations/0005_auto_20200203_1654.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/takim/migrations/0006_takim_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/takim/migrations/0007_auto_20200203_1954.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/takim/migrations/0008_takim_sahip.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/proje/proje_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proje/proje_detay.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +69,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -125,6 +165,8 @@
       <workItem from="1580750188574" duration="274000" />
       <workItem from="1580754595980" duration="1056000" />
       <workItem from="1580759142545" duration="8033000" />
+      <workItem from="1581025034390" duration="3964000" />
+      <workItem from="1581030919167" duration="3525000" />
     </task>
     <servers />
   </component>
@@ -136,54 +178,54 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1059" y="275" key="FileChooserDialogImpl/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580254208094" />
-    <state width="2517" height="348" key="GridCell.Tab.0.bottom" timestamp="1580768454256">
+    <state width="2517" height="101" key="GridCell.Tab.0.bottom" timestamp="1581034447662">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.bottom.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="348" key="GridCell.Tab.0.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580768454256" />
-    <state width="2517" height="348" key="GridCell.Tab.0.center" timestamp="1580768454256">
+    <state width="2517" height="101" key="GridCell.Tab.0.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581034447662" />
+    <state width="2517" height="101" key="GridCell.Tab.0.center" timestamp="1581034447662">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.center.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="348" key="GridCell.Tab.0.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580768454256" />
-    <state width="2517" height="348" key="GridCell.Tab.0.left" timestamp="1580768454256">
+    <state width="2517" height="101" key="GridCell.Tab.0.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581034447662" />
+    <state width="2517" height="101" key="GridCell.Tab.0.left" timestamp="1581034447661">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.left.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="348" key="GridCell.Tab.0.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580768454256" />
-    <state width="2517" height="348" key="GridCell.Tab.0.right" timestamp="1580768454256">
+    <state width="2517" height="101" key="GridCell.Tab.0.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581034447661" />
+    <state width="2517" height="101" key="GridCell.Tab.0.right" timestamp="1581034447662">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.right.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="348" key="GridCell.Tab.0.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580768454256" />
-    <state width="2517" height="348" key="GridCell.Tab.1.bottom" timestamp="1580768454256">
+    <state width="2517" height="101" key="GridCell.Tab.0.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581034447662" />
+    <state width="2517" height="348" key="GridCell.Tab.1.bottom" timestamp="1581030883997">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="348" key="GridCell.Tab.1.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580768454256" />
-    <state width="2517" height="348" key="GridCell.Tab.1.center" timestamp="1580768454256">
+    <state width="2517" height="348" key="GridCell.Tab.1.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581030883997" />
+    <state width="2517" height="348" key="GridCell.Tab.1.center" timestamp="1581030883997">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="348" key="GridCell.Tab.1.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580768454256" />
-    <state width="2517" height="348" key="GridCell.Tab.1.left" timestamp="1580768454256">
+    <state width="2517" height="348" key="GridCell.Tab.1.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581030883997" />
+    <state width="2517" height="348" key="GridCell.Tab.1.left" timestamp="1581030883997">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="348" key="GridCell.Tab.1.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580768454256" />
-    <state width="2517" height="348" key="GridCell.Tab.1.right" timestamp="1580768454256">
+    <state width="2517" height="348" key="GridCell.Tab.1.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581030883997" />
+    <state width="2517" height="348" key="GridCell.Tab.1.right" timestamp="1581030883997">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="348" key="GridCell.Tab.1.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580768454256" />
+    <state width="2517" height="348" key="GridCell.Tab.1.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581030883997" />
     <state x="781" y="163" key="SettingsEditor" timestamp="1580376491668">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

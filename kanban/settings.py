@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'proje.apps.ProjeConfig',
     'takim.apps.TakimConfig',
     'django_cleanup',
+    'django.contrib.humanize',  # django'nun özel template taglarını kullanabilmek için
 ]
 
 MIDDLEWARE = [

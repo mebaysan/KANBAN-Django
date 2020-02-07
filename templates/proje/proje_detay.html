@@ -3,16 +3,50 @@
 {% block icerik %}
     <h1>{{ proje.ad }} | Projesi</h1>
     <ul>
-        <h4>Görevler</h4>
-        {% for gorev in gorevler %}
-            <li>{{ gorev.ad }}</li>
+        <h4>Görev Grupları</h4>
+        {% for gorev_grubu in gorev_gruplari %}
+            <li>{{ gorev_grubu.ad }}</li>
+            <ul>
+                Görevler
+                {% for gorev in gorevler %}
+                    {% if gorev.gorev_grubu.id == gorev_grubu.id %}
+                        <li>
+                            <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}</a>
+                        </li>
+                    {% endif %}
+
+                {% endfor %}
+
+            </ul>
         {% endfor %}
     </ul>
     <ul>
         <h4>Dosyalar</h4>
         {% for dosya in dosyalar %}
-            <li>{{ dosya.ad }} | {{ dosya.dosya }}</li>
+            <li>{{ dosya.ad }} | {{ dosya.dosya.url }}</li>
         {% endfor %}
 
     </ul>
+    <hr>
+    <br>
+    <form action="{% url 'gorev:gorev_ekle' proje_slug=proje.slug %}" method="post">
+    {% csrf_token %}
+        <input type="text" name="ad" placeholder="ad">
+        <input type="text" name="aciklama" placeholder="aciklama">
+        <input type="date" name="baslama_tarihi" placeholder="baslama_tarihi">
+        <input type="date" name="bitis_tarihi" placeholder="bitis_tarihi">
+        <select name="uyeler" multiple>
+            {% for uye in proje.takim.uyeler.all %}
+                <option value="{{ uye.username }}">{{ uye.username }}</option>
+            {% endfor %}
+        </select>
+        <select name="gorev_grubu">
+            {% for gorev_grubu in gorev_gruplari %}
+                <option value="{{ gorev_grubu.slug }}">{{ gorev_grubu.ad }}</option>
+
+            {% endfor %}
+
+        </select>
+        <input type="submit" value="Gönder">
+    </form>
 {% endblock %}

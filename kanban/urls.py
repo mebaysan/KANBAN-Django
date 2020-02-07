@@ -22,8 +22,8 @@ from kullanici.views import giris_yap
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('kullanicilar/', include('kullanici.urls')),
-                  path('', giris_yap), # ana sayfa için
-                  path('', include('gorev.urls')),
+                  path('', giris_yap),  # ana sayfa için
+                  path('gorevler/', include('gorev.urls')),
                   path('takımlar/', include('takim.urls')),
                   path('projeler/', include('proje.urls')),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,

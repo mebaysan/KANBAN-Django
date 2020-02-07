@@ -4,9 +4,9 @@ from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 # Create your views here.
-from gorev.models import Gorev
+from gorev.models import Gorev, GorevGrubu
 from kullanici.models import Kullanici
-from proje.models import Proje
+from proje.models import Proje, ProjeDosya
 from takim.models import Takim
 
 
@@ -14,12 +14,11 @@ from takim.models import Takim
 def proje_detay(request, proje_slug):
     proje = Proje.objects.get(slug=proje_slug)
     gorevler = Gorev.objects.filter(proje=proje)
-    dosyalar = []
-    for gorev in gorevler:
-        for dosya in gorev.dosyalar.all():
-            dosyalar.append(dosya)
+    gorev_gruplari = GorevGrubu.objects.filter(proje=proje)
+    dosyalar = ProjeDosya.objects.filter(proje=proje)
     context = {
         'proje': proje,
+        'gorev_gruplari': gorev_gruplari,
         'gorevler': gorevler,
         'dosyalar': dosyalar,
     }
@@ -42,8 +41,7 @@ def proje_ekle(request, takim_slug):
     yeni_proje.save()
     for uye in uyeler:
         obj = Kullanici.objects.get(email=uye)
-        obj.projeler.add(yeni_proje)
-        obj.save()
+        yeni_proje.uyeler.add(obj)
+    yeni_proje.save()
     messages.success(request, 'Proje başarıyla oluşturuldu.')
-    # toDo: proje ekle ve üyelerle birlikte
     return redirect(reverse('takim:takim_detay', kwargs={'takim_slug': takim_slug}))

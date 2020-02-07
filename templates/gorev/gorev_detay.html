@@ -1,0 +1,51 @@
+{% extends 'utilities/layout.html' %}
+{% load static %}
+{% load humanize %}
+{% block icerik %}
+    <h4>{{ gorev.ad }}</h4>
+    <ul>
+        İşlemler
+        {% for islem in islemler %}
+            <li>{{ islem.ad }} | {{ islem.islem_sureci }}</li>
+        {% endfor %}
+
+    </ul>
+
+    <ul>
+        Notlar
+        {% for nott in notlar %}
+            <li><img src="{{ nott.kullanici.profil_foto.url }}" alt="asd" width="50"
+                     height="50">{{ nott.ad }} | {{ nott.olusturulma_tarihi|naturaltime }}</li>
+        {% endfor %}
+
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <hr>
+    <br>
+    <form action="{% url 'gorev:islem_ekle' gorev_slug=gorev.slug %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="ad" placeholder="ad">
+        <input type="submit" value="Gönder">
+    </form>
+    <hr><br>
+    <form action="{% url 'gorev:not_ekle' gorev_slug=gorev.slug %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="ad" placeholder="ad">
+        <input type="aciklama" name="aciklama" placeholder="aciklama">
+        <input type="submit" value="Gönder">
+    </form>
+{% endblock %}

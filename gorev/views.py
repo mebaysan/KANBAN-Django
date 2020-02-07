@@ -1,3 +1,65 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
+from django.contrib import messages
+from django.http import HttpResponseForbidden
 # Create your views here.
+from gorev.models import Gorev, GorevGrubu, Islem, Not
+from kullanici.models import Kullanici
+from proje.models import Proje
+
+
+@login_required
+@require_http_methods(['POST'])
+def gorev_ekle(request, proje_slug):
+    ad = request.POST.get('ad')
+    aciklama = request.POST.get('aciklama')
+    baslama_tarihi = request.POST.get('baslama_tarihi')
+    bitis_tarihi = request.POST.get('bitis_tarihi')
+    uyeler = request.POST.getlist('uyeler')
+    gorev_grubu = request.POST.get('gorev_grubu')
+    yeni_gorev = Gorev(ad=ad, aciklama=aciklama, baslama_tarihi=baslama_tarihi, bitis_tarihi=bitis_tarihi,
+                       gorev_grubu=GorevGrubu.objects.get(slug=gorev_grubu), proje=Proje.objects.get(slug=proje_slug))
+    yeni_gorev.save()
+    for uye in uyeler:
+        obj = Kullanici.objects.get(username=uye)
+        yeni_gorev.uyeler.add(obj)
+    yeni_gorev.save()
+    return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': proje_slug}))
+
+
+@login_required
+def gorev_detay(request, gorev_slug):
+    gorev = get_object_or_404(Gorev, slug=gorev_slug)
+    islemler = gorev.islemler.all()
+    notlar = gorev.notlar.all()
+    dosyalar = gorev.dosyalar.all()
+    context = {
+        'gorev': gorev,
+        'islemler': islemler,
+        'notlar': notlar,
+        'dosyalar': dosyalar
+    }
+    return render(request, 'gorev/gorev_detay.html', context=context)
+
+
+@login_required
+@require_http_methods(['POST'])
+def not_ekle(request, gorev_slug):
+    gorev = get_object_or_404(Gorev, slug=gorev_slug)
+    not_adi = request.POST.get('ad')
+    not_aciklamasi = request.POST.get('aciklama')
+    yeni_not = Not(ad=not_adi, aciklama=not_aciklamasi, kullanici=request.user, gorev=gorev)
+    yeni_not.save()
+    return redirect(reverse('gorev:gorev_detay', kwargs={'gorev_slug': gorev_slug}))
+
+
+@login_required
+@require_http_methods(['POST'])
+def islem_ekle(request, gorev_slug):
+    gorev = get_object_or_404(Gorev, slug=gorev_slug)
+    islem_adi = request.POST.get('ad')
+    islem = Islem(ad=islem_adi)
+    islem.save()
+    gorev.islemler.add(islem)
+    return redirect(reverse('gorev:gorev_detay', kwargs={'gorev_slug': gorev_slug}))
