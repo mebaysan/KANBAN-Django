@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'kullanici.apps.KullaniciConfig',
     'proje.apps.ProjeConfig',
     'takim.apps.TakimConfig',
+    'aktivite.apps.AktiviteConfig',
     'django_cleanup',
     'django.contrib.humanize',  # django'nun özel template taglarını kullanabilmek için
 ]

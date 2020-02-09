@@ -8,6 +8,7 @@ from gorev.models import Gorev, GorevGrubu
 from kullanici.models import Kullanici
 from proje.models import Proje, ProjeDosya
 from takim.models import Takim
+from aktivite.models import Aktivite
 
 
 @login_required
@@ -41,6 +42,9 @@ def proje_ekle(request, takim_slug):
     yeni_proje = Proje(ad=ad, aciklama=aciklama, baslama_tarihi=baslangic_tarih, bitis_tarihi=bitis_tarih,
                        gizlilik=gizlilik, takim=Takim.objects.get(slug=takim_slug))
     yeni_proje.save()
+    yeni_aktivite = Aktivite(proje=yeni_proje, kullanici=request.user, aktivite_tipi='olusturma',
+                             aktivite="{}, {} adlı projeyi oluşturdu".format(request.user.username, yeni_proje.ad))
+    yeni_aktivite.save()
     for uye in uyeler:
         obj = Kullanici.objects.get(email=uye)
         yeni_proje.uyeler.add(obj)
