@@ -27,4 +27,15 @@ def gorev_basari_durumu(gorev):
         sonuc = (biten_islemler / toplam_islem) * 100
     except ZeroDivisionError:
         sonuc = (0/1) * 100
+    return "{}".format(sonuc)\
+
+
+@register.filter(name='proje_basari_durumu')
+def proje_basari_durumu(proje):
+    toplam_gorev = proje.gorevler.all().count()
+    biten_gorevler = proje.gorevler.filter(gorev_durum='bitti').count()
+    try:
+        sonuc = (biten_gorevler / toplam_gorev) * 100
+    except ZeroDivisionError:
+        sonuc = (0/1) * 100
     return "{}".format(sonuc)

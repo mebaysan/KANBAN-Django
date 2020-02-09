@@ -1,41 +1,52 @@
 {% extends 'utilities/layout.html' %}
 {% load static %}
 {% block icerik %}
-        <div class="text-center">
-            <h1 class="h2">Hesap Oluşturun &#128588; </h1>
-            <p class="lead">Anında ücretsiz olarak proje geliştirmeye başlayın</p>
-            {#              <button class="btn btn-lg btn-block btn-primary">#}
-            {#                <img alt="Google" src="{% static 'img/logo-google.svg' %}" class="rounded align-top mr-2" />Continue with Google#}
-            {#              </button>#}
-            {#              <hr>#}
-            <form action="{% url 'kullanici:kayit_ol' %}" method="post" enctype="multipart/form-data"
-                  id="kayit_ol_form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Email" name="email" required>
-                    <div class="text-left">
-                        <small>Email adresiniz aynı zamanda <b>Kullanıcı Adınız</b> olacaktır</small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" placeholder="Şifre" name="password" id="password"
-                           required>
-                    <div class="text-left">
-                        <small>Şifrenizi güçlü belirlemeyi lütfen unutmayın</small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" placeholder="Şifre Kontrol" name="password_check"
-                           id="password_check" required>
+    <div class="main-container fullscreen">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-7">
+                    <div class="text-center">
+                        <h1 class="h2">Hesap Oluşturun &#128588; </h1>
+                        <p class="lead">Anında ücretsiz olarak proje geliştirmeye başlayın</p>
+                        {#              <button class="btn btn-lg btn-block btn-primary">#}
+                        {#                <img alt="Google" src="{% static 'img/logo-google.svg' %}" class="rounded align-top mr-2" />Continue with Google#}
+                        {#              </button>#}
+                        {#              <hr>#}
+                        <form action="{% url 'kullanici:kayit_ol' %}" method="post" enctype="multipart/form-data"
+                              id="kayit_ol_form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Email" name="email" required>
+                                <div class="text-left">
+                                    <small>Email adresiniz aynı zamanda <b>Kullanıcı Adınız</b> olacaktır</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" placeholder="Şifre" name="password"
+                                       id="password"
+                                       required>
+                                <div class="text-left">
+                                    <small>Şifrenizi güçlü belirlemeyi lütfen unutmayın</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" placeholder="Şifre Kontrol"
+                                       name="password_check"
+                                       id="password_check" required>
 
+                            </div>
+                            <button class="btn btn-lg btn-block btn-primary" role="button" type="submit" id="kayit_btn">
+                                Hesap Oluştur
+                            </button>
+                            <small>Hesap oluşturarak otomatik olarak <a href="#">Kullanım Koşulları</a>'nı kabul etmiş
+                                olursunuz
+                            </small>
+                        </form>
+                    </div>
                 </div>
-                <button class="btn btn-lg btn-block btn-primary" role="button" type="submit" id="kayit_btn">
-                    Hesap Oluştur
-                </button>
-                <small>Hesap oluşturarak otomatik olarak <a href="#">Kullanım Koşulları</a>'nı kabul etmiş olursunuz
-                </small>
-            </form>
+            </div>
         </div>
+    </div>
 
 
 {% endblock %}

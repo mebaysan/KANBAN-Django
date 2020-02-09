@@ -14,16 +14,18 @@ from aktivite.models import Aktivite
 @login_required
 def proje_detay(request, proje_slug):
     proje = get_object_or_404(Proje, slug=proje_slug)
-    yapilacaklar = proje.gorevler.filter(gorev_durum='yapilacak')
-    yapilanlar = proje.gorevler.filter(gorev_durum='devam')
+    yapilacaklar = proje.gorevler.filter(gorev_durum='yapilacak').order_by('bitis_tarihi')
+    yapilanlar = proje.gorevler.filter(gorev_durum='devam').order_by('bitis_tarihi')
     bitenler = proje.gorevler.filter(gorev_durum='bitti')
     dosyalar = ProjeDosya.objects.filter(proje=proje)
+    aktiviteler = Aktivite.objects.filter(proje=proje).order_by('-olusturulma_tarihi') # en yeniden eskiye doğru sıralar
     context = {
         'proje': proje,
         'dosyalar': dosyalar,
         'yapilacaklar': yapilacaklar,
         'yapilanlar': yapilanlar,
-        'bitenler': bitenler
+        'bitenler': bitenler,
+        'aktiviteler':aktiviteler
     }
     return render(request, 'proje/proje_detay.html', context=context)
 
@@ -43,7 +45,7 @@ def proje_ekle(request, takim_slug):
                        gizlilik=gizlilik, takim=Takim.objects.get(slug=takim_slug))
     yeni_proje.save()
     yeni_aktivite = Aktivite(proje=yeni_proje, kullanici=request.user, aktivite_tipi='olusturma',
-                             aktivite="{}, {} adlı projeyi oluşturdu".format(request.user.username, yeni_proje.ad))
+                             aktivite="{} adlı projeyi oluşturdu".format(yeni_proje.ad))
     yeni_aktivite.save()
     for uye in uyeler:
         obj = Kullanici.objects.get(email=uye)
@@ -56,8 +58,8 @@ def proje_ekle(request, takim_slug):
 @login_required
 def proje_kanban_board(request, proje_slug):
     proje = get_object_or_404(Proje, slug=proje_slug)
-    yapilacaklar = proje.gorevler.filter(gorev_durum='yapilacak')
-    yapilanlar = proje.gorevler.filter(gorev_durum='devam')
+    yapilacaklar = proje.gorevler.filter(gorev_durum='yapilacak').order_by('bitis_tarihi')
+    yapilanlar = proje.gorevler.filter(gorev_durum='devam').order_by('bitis_tarihi')
     bitenler = proje.gorevler.filter(gorev_durum='bitti')
     context = {
         'proje': proje,

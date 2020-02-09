@@ -1,28 +1,39 @@
 {% extends 'utilities/layout.html' %}
 {% load static %}
 {% block icerik %}
-
-    <div class="text-center">
-        <h1 class="h2">Hoş Geldiniz &#x1f44b;</h1>
-        <p class="lead">Hesabınıza erişmek için lütfen giriş yapın</p>
-        <form action="{% url 'kullanici:giris_yap' %}" method="post" id="giris_form">
-            {% csrf_token %}
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Kullanıcı Adı veya E-Mail" name="username"
-                       id="username" required/>
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" placeholder="Şifre" name="password" id="password" required/>
-                <div class="text-right">
-                    <small><a href="{% url 'kullanici:sifremi_unuttum_sayfa' %}">Şifrenizi mi unuttunuz?</a>
-                    </small>
+    <div class="main-container fullscreen">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-7">
+                    <div class="text-center">
+                        <h1 class="h2">Hoş Geldiniz &#x1f44b;</h1>
+                        <p class="lead">Hesabınıza erişmek için lütfen giriş yapın</p>
+                        <form action="{% url 'kullanici:giris_yap' %}" method="post" id="giris_form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Kullanıcı Adı veya E-Mail"
+                                       name="username"
+                                       id="username" required/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" placeholder="Şifre" name="password"
+                                       id="password" required/>
+                                <div class="text-right">
+                                    <small><a href="{% url 'kullanici:sifremi_unuttum_sayfa' %}">Şifrenizi mi
+                                        unuttunuz?</a>
+                                    </small>
+                                </div>
+                            </div>
+                            <button class="btn btn-lg btn-block btn-primary" role="button" type="submit">
+                                Giriş
+                            </button>
+                            <small>Hesabınız yok mu? <a href="{% url 'kullanici:kayit_ol' %}">Ücretsiz bir tane
+                                oluşturun</a>
+                            </small>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <button class="btn btn-lg btn-block btn-primary" role="button" type="submit">
-                Giriş
-            </button>
-            <small>Hesabınız yok mu? <a href="{% url 'kullanici:kayit_ol' %}">Ücretsiz bir tane oluşturun</a>
-            </small>
-        </form>
+        </div>
     </div>
 {% endblock %}

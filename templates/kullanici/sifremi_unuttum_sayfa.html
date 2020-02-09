@@ -1,16 +1,24 @@
 {% extends 'utilities/layout.html' %}
 {% block icerik %}
-            <div class="text-center">
-              <h1 class="h2">Şifremi Unuttum &#x1f62B;</h1>
-              <p class="lead">Şifre sıfırlama kodunu almak içi Email adresinizi girin</p>
-              <form method="post" action="{% url 'kullanici:kullanici_sifremi_unuttum' %}">
-                  {% csrf_token %}
-                <div class="form-group">
-                  <input class="form-control" type="email" placeholder="Email Adresi" name="email" />
+    <div class="main-container fullscreen">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-7">
+                    <div class="text-center">
+                        <h1 class="h2">Şifremi Unuttum &#x1f62B;</h1>
+                        <p class="lead">Şifre sıfırlama kodunu almak içi Email adresinizi girin</p>
+                        <form method="post" action="{% url 'kullanici:kullanici_sifremi_unuttum' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input class="form-control" type="email" placeholder="Email Adresi" name="email"/>
+                            </div>
+                            <button class="btn btn-lg btn-block btn-primary" role="button" type="submit">
+                                Sıfırlama Kodu Al
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <button class="btn btn-lg btn-block btn-primary" role="button" type="submit">
-                  Sıfırlama Kodu Al
-                </button>
-              </form>
             </div>
+        </div>
+    </div>
 {% endblock %}

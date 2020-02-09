@@ -23,7 +23,7 @@ def gorev_ekle(request, proje_slug):
                        proje=Proje.objects.get(slug=proje_slug))
     yeni_gorev.save()
     yeni_aktivite = Aktivite(proje=proje, gorev=yeni_gorev, kullanici=request.user, aktivite_tipi='olusturma',
-                             aktivite="{}, {} adlı görevi oluşturdu".format(request.user.username, yeni_gorev.ad))
+                             aktivite="{} adlı görevi oluşturdu".format(yeni_gorev.ad))
     yeni_aktivite.save()
     for uye in uyeler:
         obj = Kullanici.objects.get(username=uye)
@@ -38,11 +38,13 @@ def gorev_detay(request, gorev_slug):
     islemler = gorev.islemler.all()
     notlar = gorev.notlar.all()
     dosyalar = gorev.dosyalar.all()
+    aktiviteler = Aktivite.objects.filter(gorev=gorev)
     context = {
         'gorev': gorev,
         'islemler': islemler,
         'notlar': notlar,
-        'dosyalar': dosyalar
+        'dosyalar': dosyalar,
+        'aktiviteler': aktiviteler
     }
     return render(request, 'gorev/gorev_detay.html', context=context)
 
@@ -57,8 +59,9 @@ def not_ekle(request, gorev_slug):
     yeni_not = Not(ad=not_adi, aciklama=not_aciklamasi, kullanici=request.user, gorev=gorev)
     yeni_not.save()
     yeni_aktivite = Aktivite(proje=proje, gorev=gorev, kullanici=request.user, aktivite_tipi='ekleme',
-                             aktivite="{}, {} adlı notu ekledi".format(request.user.username, yeni_not.ad))
+                             aktivite="{} adlı notu ekledi".format(yeni_not.ad))
     yeni_aktivite.save()
+    messages.success(request, 'Başarıyla not eklendi')
     return redirect(reverse('gorev:gorev_detay', kwargs={'gorev_slug': gorev_slug}))
 
 
@@ -72,6 +75,6 @@ def islem_ekle(request, gorev_slug):
     islem.save()
     gorev.islemler.add(islem)
     yeni_aktivite = Aktivite(proje=proje, gorev=gorev, kullanici=request.user, aktivite_tipi='ekleme',
-                             aktivite="{}, {} adlı işlemi ekledi".format(request.user.username, islem.ad))
+                             aktivite="{} adlı işlemi ekledi".format(islem.ad))
     yeni_aktivite.save()
     return redirect(reverse('gorev:gorev_detay', kwargs={'gorev_slug': gorev_slug}))

@@ -2,39 +2,501 @@
 {% load static %}
 {% load gorev_sorgulama %}
 {% block icerik %}
-    <h2>{{ proje.ad }}</h2>
-    <h5>{{ proje.aciklama }}</h5>
-    <hr>
-    <br>
-    <div>
-    <h4>Yapılması Gerekenler</h4>
-    <ul>
-{% for gorev in yapilacaklar %}
-                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
-                        | {{ gorev|gorev_kac_islem_var }}</a></li>
+    <div class="main-container">
+        <div class="container-kanban">
+            <div class="container-fluid page-header d-flex justify-content-between align-items-start">
+                <div>
+                    <h1>{{ proje.ad }}</h1>
+                    <p class="lead d-none d-md-block">{{ proje.aciklama }}</p>
+                </div>
+                <div class="d-flex align-items-center">
+                    <ul class="avatars">
+                        {% for uye in proje.uyeler.all %}
+                            <li>
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="{{ uye.username }}">
+                                    <img alt="{{ uye.username }}" class="avatar" src="{{ uye.profil_foto.url }}"/>
+                                </a>
+                            </li>
 
-                {% endfor %}
+                        {% endfor %}
 
-            </ul>
-    </ul>
-    </div>
-    <div>
-    <h4>Yapılmakta Olanlar</h4>
-    <ul>
-{% for gorev in yapilanlar %}
-                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
-                        | {{ gorev|gorev_kac_islem_var }}</a></li>
+                    </ul>
+                    <button class="btn btn-round" data-toggle="modal" data-target="#user-invite-modal"
+                            data-placement="top" title="Add User">
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </div>
+            <div class="kanban-board container-fluid mt-lg-3">
+                <div class="kanban-col">
+                    <div class="card-list">
+                        <div class="card-list-header">
+                            <h6>ToDo</h6>
+                            <div class="dropdown">
+                                <button class="btn-options" type="button" id="cardlist-dropdown-button-1"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Güncelle</a>
+                                    <a class="dropdown-item text-danger" href="#">Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-list-body">
 
-                {% endfor %}
-    </ul>
-    </div>
-    <div>
-    <h4>Yapılmış Olanlar</h4>
-    <ul>
-{% for gorev in bitenler %}
-                    <li><a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">{{ gorev.ad }}
-                        | {{ gorev|gorev_kac_islem_var }}</a></li>
-                {% endfor %}
-    </ul>
+                            {% for gorev in yapilacaklar %}
+                                <div class="card card-kanban">
+
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar"
+                                             style="width: {{ gorev|gorev_basari_durumu }}%"
+                                             aria-valuenow="{{ gorev|gorev_basari_durumu }}" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="dropdown card-options">
+                                            <button class="btn-options" type="button" id="kanban-dropdown-button-9"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Güncelle</a>
+                                                <a class="dropdown-item text-danger" href="#">Sil</a>
+                                            </div>
+                                        </div>
+                                        <div class="card-title">
+                                            <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}"
+                                               data-toggle="modal" data-target="#task-modal">
+                                                <h6>{{ gorev.ad }}</h6>
+                                            </a>
+                                        </div>
+
+                                        <ul class="avatars">
+
+                                            {% for uye in gorev.uyeler.all %}
+                                                <li>
+                                                    <a href="#" data-toggle="tooltip" title="{{ uye.username }}">
+                                                        <img alt="{{ uye.username }}" class="avatar"
+                                                             src="{{ uye.profil_foto.url }}"/>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+
+
+                                        </ul>
+
+                                        <div class="card-meta d-flex justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <i class="material-icons">playlist_add_check</i>
+                                                <span>{{ gorev|gorev_kac_islem_var }}</span>
+                                            </div>
+
+                                            <span class="text-small">Kalan: {{ gorev.bitis_tarihi|timeuntil }}</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+                        <div class="card-list-footer">
+                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kanban-col">
+                    <div class="card-list">
+                        <div class="card-list-header">
+                            <h6>InProgress</h6>
+                            <div class="dropdown">
+                                <button class="btn-options" type="button" id="cardlist-dropdown-button-2"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Edit</a>
+                                    <a class="dropdown-item text-danger" href="#">Archive List</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-list-body">
+
+                            {% for gorev in yapilanlar %}
+                                <div class="card card-kanban">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar"
+                                             style="width: {{ gorev|gorev_basari_durumu }}%"
+                                             aria-valuenow="{{ gorev|gorev_basari_durumu }}" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="dropdown card-options">
+                                            <button class="btn-options" type="button" id="kanban-dropdown-button-9"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Güncelle</a>
+                                                <a class="dropdown-item text-danger" href="#">Sil</a>
+                                            </div>
+                                        </div>
+                                        <div class="card-title">
+                                            <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}"
+                                               data-toggle="modal" data-target="#task-modal">
+                                                <h6>{{ gorev.ad }}</h6>
+                                            </a>
+                                        </div>
+
+                                        <ul class="avatars">
+
+                                            {% for uye in gorev.uyeler.all %}
+                                                <li>
+                                                    <a href="#" data-toggle="tooltip" title="{{ uye.username }}">
+                                                        <img alt="{{ uye.username }}" class="avatar"
+                                                             src="{{ uye.profil_foto.url }}"/>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+
+
+                                        </ul>
+
+                                        <div class="card-meta d-flex justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <i class="material-icons">playlist_add_check</i>
+                                                <span>{{ gorev|gorev_kac_islem_var }}</span>
+                                            </div>
+
+                                            <span class="text-small">Kalan: {{ gorev.bitis_tarihi|timeuntil }}</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+                        <div class="card-list-footer">
+                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kanban-col">
+                    <div class="card-list">
+                        <div class="card-list-header">
+                            <h6>Done</h6>
+                            <div class="dropdown">
+                                <button class="btn-options" type="button" id="cardlist-dropdown-button-3"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Güncelle</a>
+                                    <a class="dropdown-item text-danger" href="#">Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-list-body">
+
+                            {% for gorev in bitenler %}
+                                <div class="card card-kanban">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar"
+                                             style="width: {{ gorev|gorev_basari_durumu }}%"
+                                             aria-valuenow="{{ gorev|gorev_basari_durumu }}" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="dropdown card-options">
+                                            <button class="btn-options" type="button" id="kanban-dropdown-button-9"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Güncelle</a>
+                                                <a class="dropdown-item text-danger" href="#">Sil</a>
+                                            </div>
+                                        </div>
+                                        <div class="card-title">
+                                            <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}"
+                                               data-toggle="modal" data-target="#task-modal">
+                                                <h6>{{ gorev.ad }}</h6>
+                                            </a>
+                                        </div>
+
+                                        <ul class="avatars">
+
+                                            {% for uye in gorev.uyeler.all %}
+                                                <li>
+                                                    <a href="#" data-toggle="tooltip" title="{{ uye.username }}">
+                                                        <img alt="{{ uye.username }}" class="avatar"
+                                                             src="{{ uye.profil_foto.url }}"/>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+
+
+                                        </ul>
+
+                                        <div class="card-meta d-flex justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <i class="material-icons">playlist_add_check</i>
+                                                <span>{{ gorev|gorev_kac_islem_var }}</span>
+                                            </div>
+
+                                            <span class="text-small">Kalan: {{ gorev.bitis_tarihi|timeuntil }}</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+
+                        <div class="card-list-footer">
+                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <form class="modal fade" id="user-invite-modal" tabindex="-1" aria-hidden="true"
+              action="{% url 'takim:takim_uye_ekle' takim_slug=proje.takim.slug %}" method="post">
+            {% csrf_token %}
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Takıma Üye Davet Et</h5>
+                        <button type="button" class="close btn btn-round" data-dismiss="modal"
+                                aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
+                    </div>
+                    <!--end of modal head-->
+                    <div class="modal-body">
+                        <p>Sisteme kayıtlı kullanıcılardan birini takımına davet et</p>
+                        <div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="material-icons">email</i>
+                              </span>
+                                </div>
+                                <input type="email" class="form-control"
+                                       placeholder="Davet Edilecek Kullanıcının Mail Adresi"
+                                       aria-label="Recipient email address" name="email">
+                            </div>
+                            {#                                    <div class="text-right text-small mt-2">#}
+                            {#                                        <a href="#" role="button">Add another recipient</a>#}
+                            {#                                    </div>#}
+                        </div>
+                    </div>
+                    <!--end of modal body-->
+                    <div class="modal-footer">
+                        <button role="button" class="btn btn-primary" type="submit">
+                            Kullanıcıyı Davet Et
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        {#        <button class="btn btn-primary btn-round btn-floating btn-lg" type="button" data-toggle="collapse"#}
+        {#                data-target="#floating-chat" aria-expanded="false">#}
+        {#            <i class="material-icons">chat_bubble</i>#}
+        {#            <i class="material-icons">close</i>#}
+        {#        </button>#}
+        {#        <div class="collapse sidebar-floating" id="floating-chat">#}
+        {#            <div class="sidebar-content">#}
+        {#                <div class="chat-module" data-filter-list="chat-module-body">#}
+        {#                    <div class="chat-module-top">#}
+        {#                        <form>#}
+        {#                            <div class="input-group input-group-round">#}
+        {#                                <div class="input-group-prepend">#}
+        {#                      <span class="input-group-text">#}
+        {#                        <i class="material-icons">search</i>#}
+        {#                      </span>#}
+        {#                                </div>#}
+        {#                                <input type="search" class="form-control filter-list-input" placeholder="Search chat"#}
+        {#                                       aria-label="Search Chat">#}
+        {#                            </div>#}
+        {#                        </form>#}
+        {#                        <div class="chat-module-body">#}
+        {##}
+        {#                            <div class="media chat-item">#}
+        {#                                <img alt="Claire" src="assets/img/avatar-female-1.jpg" class="avatar"/>#}
+        {#                                <div class="media-body">#}
+        {#                                    <div class="chat-item-title">#}
+        {#                                        <span class="chat-item-author" data-filter-by="text">Claire</span>#}
+        {#                                        <span data-filter-by="text">4 days ago</span>#}
+        {#                                    </div>#}
+        {#                                    <div class="chat-item-body" data-filter-by="text">#}
+        {#                                        <p>Hey guys, just kicking things off here in the chat window. Hope you&#39;re#}
+        {#                                            all ready to tackle this great project. Let&#39;s smash some Brand Concept#}
+        {#                                            &amp; Design!</p>#}
+        {##}
+        {#                                    </div>#}
+        {##}
+        {#                                </div>#}
+        {#                            </div>#}
+        {##}
+        {#                            <div class="media chat-item">#}
+        {#                                <img alt="Peggy" src="assets/img/avatar-female-2.jpg" class="avatar"/>#}
+        {#                                <div class="media-body">#}
+        {#                                    <div class="chat-item-title">#}
+        {#                                        <span class="chat-item-author" data-filter-by="text">Peggy</span>#}
+        {#                                        <span data-filter-by="text">4 days ago</span>#}
+        {#                                    </div>#}
+        {#                                    <div class="chat-item-body" data-filter-by="text">#}
+        {#                                        <p>Nice one <a href="#">@Claire</a>, we&#39;ve got some killer ideas kicking#}
+        {#                                            about already.#}
+        {#                                            <img src="https://media.giphy.com/media/aTeHNLRLrwwwM/giphy.gif"#}
+        {#                                                 alt="alt text" title="Thinking">#}
+        {#                                        </p>#}
+        {##}
+        {#                                    </div>#}
+        {##}
+        {#                                </div>#}
+        {#                            </div>#}
+        {##}
+        {#                            <div class="media chat-item">#}
+        {#                                <img alt="Marcus" src="assets/img/avatar-male-1.jpg" class="avatar"/>#}
+        {#                                <div class="media-body">#}
+        {#                                    <div class="chat-item-title">#}
+        {#                                        <span class="chat-item-author" data-filter-by="text">Marcus</span>#}
+        {#                                        <span data-filter-by="text">3 days ago</span>#}
+        {#                                    </div>#}
+        {#                                    <div class="chat-item-body" data-filter-by="text">#}
+        {#                                        <p>Roger that boss! <a href="">@Ravi</a> and I have already started gathering#}
+        {#                                            some stuff for the mood boards, excited to start! &#x1f525;</p>#}
+        {##}
+        {#                                    </div>#}
+        {##}
+        {#                                </div>#}
+        {#                            </div>#}
+        {##}
+        {#                            <div class="media chat-item">#}
+        {#                                <img alt="Ravi" src="assets/img/avatar-male-3.jpg" class="avatar"/>#}
+        {#                                <div class="media-body">#}
+        {#                                    <div class="chat-item-title">#}
+        {#                                        <span class="chat-item-author" data-filter-by="text">Ravi</span>#}
+        {#                                        <span data-filter-by="text">3 days ago</span>#}
+        {#                                    </div>#}
+        {#                                    <div class="chat-item-body" data-filter-by="text">#}
+        {#                                        <h1>&#x1f609;</h1>#}
+        {##}
+        {#                                    </div>#}
+        {##}
+        {#                                </div>#}
+        {#                            </div>#}
+        {##}
+        {#                            <div class="media chat-item">#}
+        {#                                <img alt="Claire" src="assets/img/avatar-female-1.jpg" class="avatar"/>#}
+        {#                                <div class="media-body">#}
+        {#                                    <div class="chat-item-title">#}
+        {#                                        <span class="chat-item-author" data-filter-by="text">Claire</span>#}
+        {#                                        <span data-filter-by="text">2 days ago</span>#}
+        {#                                    </div>#}
+        {#                                    <div class="chat-item-body" data-filter-by="text">#}
+        {#                                        <p>Can&#39;t wait! <a href="#">@David</a> how are we coming along with the <a#}
+        {#                                                href="#">Client Objective Meeting</a>?</p>#}
+        {##}
+        {#                                    </div>#}
+        {##}
+        {#                                </div>#}
+        {#                            </div>#}
+        {##}
+        {#                            <div class="media chat-item">#}
+        {#                                <img alt="David" src="assets/img/avatar-male-4.jpg" class="avatar"/>#}
+        {#                                <div class="media-body">#}
+        {#                                    <div class="chat-item-title">#}
+        {#                                        <span class="chat-item-author" data-filter-by="text">David</span>#}
+        {#                                        <span data-filter-by="text">Yesterday</span>#}
+        {#                                    </div>#}
+        {#                                    <div class="chat-item-body" data-filter-by="text">#}
+        {#                                        <p>Coming along nicely, we&#39;ve got a draft for the client questionnaire#}
+        {#                                            completed, take a look! &#x1f913;</p>#}
+        {##}
+        {#                                    </div>#}
+        {##}
+        {#                                    <div class="media media-attachment">#}
+        {#                                        <div class="avatar bg-primary">#}
+        {#                                            <i class="material-icons">insert_drive_file</i>#}
+        {#                                        </div>#}
+        {#                                        <div class="media-body">#}
+        {#                                            <a href="#" data-filter-by="text">questionnaire-draft.doc</a>#}
+        {#                                            <span data-filter-by="text">24kb Document</span>#}
+        {#                                        </div>#}
+        {#                                    </div>#}
+        {##}
+        {#                                </div>#}
+        {#                            </div>#}
+        {##}
+        {#                            <div class="media chat-item">#}
+        {#                                <img alt="Sally" src="assets/img/avatar-female-3.jpg" class="avatar"/>#}
+        {#                                <div class="media-body">#}
+        {#                                    <div class="chat-item-title">#}
+        {#                                        <span class="chat-item-author" data-filter-by="text">Sally</span>#}
+        {#                                        <span data-filter-by="text">2 hours ago</span>#}
+        {#                                    </div>#}
+        {#                                    <div class="chat-item-body" data-filter-by="text">#}
+        {#                                        <p>Great start guys, I&#39;ve added some notes to the task. We may need to make#}
+        {#                                            some adjustments to the last couple of items - but no biggie!</p>#}
+        {##}
+        {#                                    </div>#}
+        {##}
+        {#                                </div>#}
+        {#                            </div>#}
+        {##}
+        {#                            <div class="media chat-item">#}
+        {#                                <img alt="Peggy" src="assets/img/avatar-female-2.jpg" class="avatar"/>#}
+        {#                                <div class="media-body">#}
+        {#                                    <div class="chat-item-title">#}
+        {#                                        <span class="chat-item-author" data-filter-by="text">Peggy</span>#}
+        {#                                        <span data-filter-by="text">Just now</span>#}
+        {#                                    </div>#}
+        {#                                    <div class="chat-item-body" data-filter-by="text">#}
+        {#                                        <p>Well done <a href="#">@all</a>. See you all at 2 for the kick-off meeting.#}
+        {#                                            &#x1f91C;</p>#}
+        {##}
+        {#                                    </div>#}
+        {##}
+        {#                                </div>#}
+        {#                            </div>#}
+        {##}
+        {#                        </div>#}
+        {#                    </div>#}
+        {#                    <div class="chat-module-bottom">#}
+        {#                        <form class="chat-form">#}
+        {#                            <textarea class="form-control" placeholder="Type message" rows="1"></textarea>#}
+        {#                            <div class="chat-form-buttons">#}
+        {#                                <button type="button" class="btn btn-link">#}
+        {#                                    <i class="material-icons">tag_faces</i>#}
+        {#                                </button>#}
+        {#                                <div class="custom-file custom-file-naked">#}
+        {#                                    <input type="file" class="custom-file-input" id="customFile">#}
+        {#                                    <label class="custom-file-label" for="customFile">#}
+        {#                                        <i class="material-icons">attach_file</i>#}
+        {#                                    </label>#}
+        {#                                </div>#}
+        {#                            </div>#}
+        {#                        </form>#}
+        {#                    </div>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
+
     </div>
 {% endblock %}

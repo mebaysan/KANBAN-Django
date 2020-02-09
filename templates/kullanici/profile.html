@@ -2,281 +2,301 @@
 {% load static %}
 {% load gorev_sorgulama %}
 {% block icerik %}
-
-    <div class="page-header mb-4">
-        <div class="media">
-            <img alt="Image" src="{{ kullanici.profil_foto.url }}" class="avatar avatar-lg mt-1"/>
-            <div class="media-body ml-3">
-                <h1 class="mb-0">{{ kullanici.first_name }} {{ kullanici.last_name }}</h1>
-                <p class="lead">{{ kullanici.title }}</p>
-            </div>
-        </div>
-    </div>
-    <ul class="nav nav-tabs nav-fill" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#teams" role="tab" aria-controls="teams"
-               aria-selected="true">Takımlar</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#projects" role="tab" aria-controls="projects"
-               aria-selected="false">Projeler</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tasks" role="tab" aria-controls="tasks" aria-selected="false">Görevler</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane fade show active" id="teams" role="tabpanel" data-filter-list="content-list-body">
-            <div class="row content-list-head">
-                <div class="col-auto">
-                    <h3>Takımlar</h3>
-                    <button class="btn btn-round" data-toggle="modal" data-target="#team-add-modal">
-                        <i class="material-icons">add</i>
-                    </button>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-11">
+                <div class="page-header mb-4">
+                    <div class="media">
+                        <img alt="Image" src="{{ kullanici.profil_foto.url }}" class="avatar avatar-lg mt-1"/>
+                        <div class="media-body ml-3">
+                            <h1 class="mb-0">{{ kullanici.first_name }} {{ kullanici.last_name }}</h1>
+                            <p class="lead">{{ kullanici.title }}</p>
+                        </div>
+                    </div>
                 </div>
-                <form class="col-md-auto">
-                    <div class="input-group input-group-round">
-                        <div class="input-group-prepend">
+                <ul class="nav nav-tabs nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#teams" role="tab" aria-controls="teams"
+                           aria-selected="true">Takımlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#projects" role="tab" aria-controls="projects"
+                           aria-selected="false">Projeler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tasks" role="tab" aria-controls="tasks"
+                           aria-selected="false">Görevler</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="teams" role="tabpanel"
+                         data-filter-list="content-list-body">
+                        <div class="row content-list-head">
+                            <div class="col-auto">
+                                <h3>Takımlar</h3>
+                                <button class="btn btn-round" data-toggle="modal" data-target="#team-add-modal">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </div>
+                            <form class="col-md-auto">
+                                <div class="input-group input-group-round">
+                                    <div class="input-group-prepend">
                           <span class="input-group-text">
                             <i class="material-icons">filter_list</i>
                           </span>
+                                    </div>
+                                    <input type="search" class="form-control filter-list-input"
+                                           placeholder="Takımları Filtrele"
+                                           aria-label="Filter teams">
+                                </div>
+                            </form>
                         </div>
-                        <input type="search" class="form-control filter-list-input" placeholder="Filter teams"
-                               aria-label="Filter teams">
-                    </div>
-                </form>
-            </div>
-            <!--end of content list head-->
-            <div class="content-list-body row">
+                        <!--end of content list head-->
+                        <div class="content-list-body row">
 
-                {% for takim in takimlar %}
-                    <div class="col-md-6">
-                        <div class="card card-team">
-                            <div class="card-body">
-                                <div class="dropdown card-options">
-                                    <button class="btn-options" type="button" data-toggle="dropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Yönet</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#">Takımdan Ayrıl</a>
+                            {% for takim in takimlar %}
+                                <div class="col-md-6">
+                                    <div class="card card-team">
+                                        <div class="card-body">
+                                            <div class="dropdown card-options">
+                                                <button class="btn-options" type="button" data-toggle="dropdown"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#">Yönet</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-danger" href="#">Takımdan Ayrıl</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-title">
+                                                <a href="{% url 'takim:takim_detay' takim_slug=takim.slug %}">
+                                                    <h5 data-filter-by="text">{{ takim.ad }}</h5>
+                                                </a>
+                                                <span>{{ takim.uyeler.count }} Üye | {{ takim.projeler.count }} Proje</span>
+                                            </div>
+                                            <ul class="avatars">
+                                                {% for uye in takim.uyeler.all %}
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" title="{{ uye.username }}">
+                                                            <img alt="Kenny Tran" class="avatar"
+                                                                 src="{{ uye.profil_foto.url }}"/>
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-title">
-                                    <a href="{% url 'takim:takim_detay' takim_slug=takim.slug %}">
-                                        <h5 data-filter-by="text">{{ takim.ad }}</h5>
-                                    </a>
-                                    <span>{{ takim.uyeler.count }} Üye | {{ takim.projeler.count }} Proje</span>
-                                </div>
-                                <ul class="avatars">
-                                    {% for uye in takim.uyeler.all %}
-                                        <li>
-                                            <a href="#" data-toggle="tooltip" title="{{ uye.username }}">
-                                                <img alt="Kenny Tran" class="avatar" src="{{ uye.profil_foto.url }}"/>
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                            {% endfor %}
                         </div>
+                        <!--end of content-list-body-->
                     </div>
-                {% endfor %}
-            </div>
-            <!--end of content-list-body-->
-        </div>
-        <div class="tab-pane fade" id="projects" role="tabpanel" data-filter-list="content-list-body">
-            <div class="content-list">
-                <div class="row content-list-head">
-                    <div class="col-auto">
-                        <h3>Projeler</h3>
-                    </div>
-                    <form class="col-md-auto">
-                        <div class="input-group input-group-round">
-                            <div class="input-group-prepend">
+                    <div class="tab-pane fade" id="projects" role="tabpanel" data-filter-list="content-list-body">
+                        <div class="content-list">
+                            <div class="row content-list-head">
+                                <div class="col-auto">
+                                    <h3>Projeler</h3>
+                                </div>
+                                <form class="col-md-auto">
+                                    <div class="input-group input-group-round">
+                                        <div class="input-group-prepend">
                             <span class="input-group-text">
                               <i class="material-icons">filter_list</i>
                             </span>
+                                        </div>
+                                        <input type="search" class="form-control filter-list-input"
+                                               placeholder="Projeleri Filtrele"
+                                               aria-label="Filter Projects">
+                                    </div>
+                                </form>
                             </div>
-                            <input type="search" class="form-control filter-list-input" placeholder="Filter projects"
-                                   aria-label="Filter Projects">
-                        </div>
-                    </form>
-                </div>
-                <!--end of content list head-->
-                <div class="content-list-body row">
+                            <!--end of content list head-->
+                            <div class="content-list-body row">
 
-                    {% for proje in projeler %}
-                        <div class="col-lg-6">
-                            <div class="card card-project">
+                                {% for proje in projeler %}
+                                    <div class="col-lg-6">
+                                        <div class="card card-project">
 
-                                <div class="card-body">
-                                    <div class="dropdown card-options">
-                                        <button class="btn-options" type="button" id="project-dropdown-button-4"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="material-icons">more_vert</i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Güncelle</a>
-                                            {#                                        <a class="dropdown-item" href="#">Paylaş</a>#}
+                                            <div class="card-body">
+                                                <div class="dropdown card-options">
+                                                    <button class="btn-options" type="button"
+                                                            id="project-dropdown-button-4"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                        <i class="material-icons">more_vert</i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" href="#">Güncelle</a>
+                                                        {#                                        <a class="dropdown-item" href="#">Paylaş</a>#}
+                                                    </div>
+                                                </div>
+                                                <div class="card-title">
+                                                    <a href="{% url 'proje:proje_detay' proje_slug=proje.slug %}">
+                                                        <h5 data-filter-by="text">{{ proje.ad }}</h5>
+                                                    </a>
+                                                </div>
+                                                <ul class="avatars">
+                                                    {% for uye in proje.uyeler.all %}
+                                                        <li>
+                                                            <a href="#" data-toggle="tooltip"
+                                                               title="{{ uye.username }}">
+                                                                <img alt="David Whittaker" class="avatar"
+                                                                     src="{{ uye.profil_foto.url }}"
+                                                                     data-filter-by="alt"/>
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                                <div class="card-meta d-flex justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="material-icons mr-1">playlist_add_check</i>
+                                                        <span class="text-small">{{ proje|proje_kac_gorev_var }}</span>
+                                                    </div>
+                                                    <span class="text-small"
+                                                          data-filter-by="text">Kalan: {{ proje.bitis_tarihi|timeuntil }}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-title">
-                                        <a href="{% url 'proje:proje_detay' proje_slug=proje.slug %}">
-                                            <h5 data-filter-by="text">{{ proje.ad }}</h5>
-                                        </a>
-                                    </div>
-                                    <ul class="avatars">
-                                        {% for uye in proje.uyeler.all %}
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="{{ uye.username }}">
-                                                    <img alt="David Whittaker" class="avatar"
-                                                         src="{{ uye.profil_foto.url }}"
-                                                         data-filter-by="alt"/>
-                                                </a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                    <div class="card-meta d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <i class="material-icons mr-1">playlist_add_check</i>
-                                            <span class="text-small">{{ proje|proje_kac_gorev_var }}</span>
-                                        </div>
-                                        <span class="text-small"
-                                              data-filter-by="text">Kalan: {{ proje.bitis_tarihi|timeuntil }}</span>
-                                    </div>
-                                </div>
+
+                                {% endfor %}
+
+
                             </div>
+                            <!--end of content list body-->
                         </div>
-
-                    {% endfor %}
-
-
-                </div>
-                <!--end of content list body-->
-            </div>
-            <!--end of content list-->
-        </div>
-        <div class="tab-pane fade" id="tasks" role="tabpanel" data-filter-list="content-list-body">
-            <div class="row content-list-head">
-                <div class="col-auto">
-                    <h3>Görevler</h3>
-                </div>
-                <form class="col-md-auto">
-                    <div class="input-group input-group-round">
-                        <div class="input-group-prepend">
+                        <!--end of content list-->
+                    </div>
+                    <div class="tab-pane fade" id="tasks" role="tabpanel" data-filter-list="content-list-body">
+                        <div class="row content-list-head">
+                            <div class="col-auto">
+                                <h3>Görevler</h3>
+                            </div>
+                            <form class="col-md-auto">
+                                <div class="input-group input-group-round">
+                                    <div class="input-group-prepend">
                           <span class="input-group-text">
                             <i class="material-icons">filter_list</i>
                           </span>
-                        </div>
-                        <input type="search" class="form-control filter-list-input" placeholder="Filter tasks"
-                               aria-label="Filter Tasks">
-                    </div>
-                </form>
-            </div>
-            <!--end of content list head-->
-            <div class="content-list-body row">
-
-                {% for gorev in gorevler %}
-                    <div class="col-12">
-                        <div class="card card-task">
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar"
-                                     style="width: {{ gorev|gorev_basari_durumu }}%"
-                                     aria-valuenow="{{ gorev|gorev_basari_durumu }}"
-                                     aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">
-                                        <h6 data-filter-by="text">{{ gorev.ad }}</h6>
-                                    </a>
-                                    <span class="text-small">Kalan: {{ gorev.bitis_tarihi|timeuntil }}</span>
-                                </div>
-                                <div class="card-meta">
-                                    <ul class="avatars">
-                                        {% for uye in gorev.uyeler.all %}
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" title="{{ uye.username }}">
-                                                    <img alt="{{ uye.username }}" class="avatar"
-                                                         src="{{ uye.profil_foto.url }}"/>
-                                                </a>
-                                            </li>
-
-                                        {% endfor %}
-
-                                    </ul>
-                                    <div class="d-flex align-items-center">
-                                        <i class="material-icons">playlist_add_check</i>
-                                        <span>{{ gorev|gorev_kac_islem_var }}</span>
                                     </div>
-                                    <div class="dropdown card-options">
-                                        <button class="btn-options" type="button" id="task-dropdown-button-1"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="material-icons">more_vert</i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Mark as done</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger" href="#">Archive</a>
+                                    <input type="search" class="form-control filter-list-input"
+                                           placeholder="Görevleri Filtrele"
+                                           aria-label="Filter Tasks">
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of content list head-->
+                        <div class="content-list-body row">
+
+                            {% for gorev in gorevler %}
+                                <div class="col-12">
+                                    <div class="card card-task">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" role="progressbar"
+                                                 style="width: {{ gorev|gorev_basari_durumu }}%"
+                                                 aria-valuenow="{{ gorev|gorev_basari_durumu }}"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <a href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">
+                                                    <h6 data-filter-by="text">{{ gorev.ad }}</h6>
+                                                </a>
+                                                <span class="text-small">Kalan: {{ gorev.bitis_tarihi|timeuntil }}</span>
+                                            </div>
+                                            <div class="card-meta">
+                                                <ul class="avatars">
+                                                    {% for uye in gorev.uyeler.all %}
+                                                        <li>
+                                                            <a href="#" data-toggle="tooltip"
+                                                               title="{{ uye.username }}">
+                                                                <img alt="{{ uye.username }}" class="avatar"
+                                                                     src="{{ uye.profil_foto.url }}"/>
+                                                            </a>
+                                                        </li>
+
+                                                    {% endfor %}
+
+                                                </ul>
+                                                <div class="d-flex align-items-center">
+                                                    <i class="material-icons">playlist_add_check</i>
+                                                    <span>{{ gorev|gorev_kac_islem_var }}</span>
+                                                </div>
+                                                <div class="dropdown card-options">
+                                                    <button class="btn-options" type="button"
+                                                            id="task-dropdown-button-1"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                        <i class="material-icons">more_vert</i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" href="#">Tamamlandı Olarak İşaretle</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item text-danger" href="#">Sil</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+
+                        </div>
+                        <!--end of content list-->
+                    </div>
+                    <!--end of tab-->
+                </div>
+                <form class="modal fade" id="team-add-modal" tabindex="-1" aria-hidden="true"
+                      action="{% url 'takim:takim_olustur' %}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Yeni Takım</h5>
+                                <button type="button" class="close btn btn-round" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                            <!--end of modal head-->
+                            <ul class="nav nav-tabs nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="team-add-details-tab" data-toggle="tab"
+                                       href="#team-add-details"
+                                       role="tab" aria-controls="team-add-details" aria-selected="true">Detaylar</a>
+                                </li>
+                            </ul>
+                            <div class="modal-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="team-add-details" role="tabpanel">
+                                        <h6>Takım Detayları</h6>
+                                        <div class="form-group row align-items-center">
+                                            <label class="col-3">Name</label>
+                                            <input class="form-control col" type="text" placeholder="Takım Adı"
+                                                   name="ad"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-3">Description</label>
+                                            <textarea class="form-control col" rows="3" placeholder="Takım Açıklaması"
+                                                      name="aciklama"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--end of modal body-->
+                            <div class="modal-footer">
+                                <button role="button" class="btn btn-primary" type="submit">
+                                    Oluştur
+                                </button>
+                            </div>
                         </div>
                     </div>
-
-                {% endfor %}
-
-
+                </form>
             </div>
-            <!--end of content list-->
         </div>
-        <!--end of tab-->
     </div>
-    <form class="modal fade" id="team-add-modal" tabindex="-1" aria-hidden="true"
-          action="{% url 'takim:takim_olustur' %}" method="post">
-        {% csrf_token %}
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Yeni Takım</h5>
-                    <button type="button" class="close btn btn-round" data-dismiss="modal" aria-label="Close">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>
-                <!--end of modal head-->
-                <ul class="nav nav-tabs nav-fill" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="team-add-details-tab" data-toggle="tab" href="#team-add-details"
-                           role="tab" aria-controls="team-add-details" aria-selected="true">Detaylar</a>
-                    </li>
-                </ul>
-                <div class="modal-body">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="team-add-details" role="tabpanel">
-                            <h6>Takım Detayları</h6>
-                            <div class="form-group row align-items-center">
-                                <label class="col-3">Name</label>
-                                <input class="form-control col" type="text" placeholder="Takım Adı" name="ad"/>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-3">Description</label>
-                                <textarea class="form-control col" rows="3" placeholder="Takım Açıklaması"
-                                          name="aciklama"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end of modal body-->
-                <div class="modal-footer">
-                    <button role="button" class="btn btn-primary" type="submit">
-                        Oluştur
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
 {% endblock %}

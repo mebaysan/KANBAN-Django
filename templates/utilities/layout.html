@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="utf-8">
@@ -23,12 +23,8 @@
     {% if request.user.is_authenticated %}
         {% include 'utilities/navbar.html' %}
     {% endif %}
-    <div class="main-container">
 
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
-                    <div class="text-center d-flex align-items-center justify-content-center pt-5">
+
                         <div>
 
                             {% block icerik %}
@@ -49,12 +45,8 @@
 
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
 
-    </div>
-</div>
+
 
 <!-- Required vendor scripts (Do not remove) -->
 <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>

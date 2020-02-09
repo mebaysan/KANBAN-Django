@@ -5,19 +5,51 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gorev/templatetags/gorev_sorgulama.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/templatetags/gorev_sorgulama.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kullanici/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kullanici/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kullanici/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/kullanici/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400_J9XA5cO.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kanban/local_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/local_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/gorevler/dosyalar/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/gorevler/dosyalar/default.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/gorevler/dosyalar/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/gorevler/dosyalar/wordpress-5.3.2-tr_TR.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400_RqCEMJ4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400_pcEfbGC.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400_vASWGcg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profil/foto/default.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profil/foto/indir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/projeler/dosyalar/Ekran_Alıntısı.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/projeler/dosyalar/wordpress-5.3.2-tr_TR.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proje/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/proje/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/flatpickr.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/js/flatpickr.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/gorev/gorev_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/gorev/gorev_detay.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/kullanici/giris_yap.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/giris_yap.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/kullanici/kayit_ol.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/kayit_ol.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/kullanici/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum_sayfa.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum_sayfa.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/proje/proje_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proje/proje_detay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/proje/proje_kanban_board.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proje/proje_kanban_board.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/takim/takim_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/takim/takim_detay.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/utilities/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/utilities/layout.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
@@ -56,7 +88,7 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -140,6 +172,8 @@
       <workItem from="1581212634655" duration="1694000" />
       <workItem from="1581249017579" duration="67000" />
       <workItem from="1581249104398" duration="8161000" />
+      <workItem from="1581276582539" duration="12128000" />
+      <workItem from="1581288809356" duration="128000" />
     </task>
     <servers />
   </component>
@@ -147,62 +181,66 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="490" y="175" key="#Chrome_Settings" timestamp="1581276688668">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="490" y="175" key="#Chrome_Settings/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581276688668" />
     <state x="1059" y="275" key="FileChooserDialogImpl" timestamp="1580254208094">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1059" y="275" key="FileChooserDialogImpl/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580254208094" />
-    <state width="2517" height="101" key="GridCell.Tab.0.bottom" timestamp="1581257281296">
+    <state width="2517" height="348" key="GridCell.Tab.0.bottom" timestamp="1581288728186">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.bottom.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="101" key="GridCell.Tab.0.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581257281296" />
-    <state width="2517" height="101" key="GridCell.Tab.0.center" timestamp="1581257281296">
+    <state width="2517" height="348" key="GridCell.Tab.0.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
+    <state width="2517" height="348" key="GridCell.Tab.0.center" timestamp="1581288728186">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.center.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="101" key="GridCell.Tab.0.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581257281296" />
-    <state width="2517" height="101" key="GridCell.Tab.0.left" timestamp="1581257281296">
+    <state width="2517" height="348" key="GridCell.Tab.0.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
+    <state width="2517" height="348" key="GridCell.Tab.0.left" timestamp="1581288728186">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.left.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="101" key="GridCell.Tab.0.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581257281296" />
-    <state width="2517" height="101" key="GridCell.Tab.0.right" timestamp="1581257281296">
+    <state width="2517" height="348" key="GridCell.Tab.0.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
+    <state width="2517" height="348" key="GridCell.Tab.0.right" timestamp="1581288728186">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.right.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="101" key="GridCell.Tab.0.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581257281296" />
-    <state width="2517" height="348" key="GridCell.Tab.1.bottom" timestamp="1581030883997">
+    <state width="2517" height="348" key="GridCell.Tab.0.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
+    <state width="2517" height="348" key="GridCell.Tab.1.bottom" timestamp="1581288728187">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="348" key="GridCell.Tab.1.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581030883997" />
-    <state width="2517" height="348" key="GridCell.Tab.1.center" timestamp="1581030883997">
+    <state width="2517" height="348" key="GridCell.Tab.1.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728187" />
+    <state width="2517" height="348" key="GridCell.Tab.1.center" timestamp="1581288728186">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="348" key="GridCell.Tab.1.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581030883997" />
-    <state width="2517" height="348" key="GridCell.Tab.1.left" timestamp="1581030883997">
+    <state width="2517" height="348" key="GridCell.Tab.1.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
+    <state width="2517" height="348" key="GridCell.Tab.1.left" timestamp="1581288728186">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="348" key="GridCell.Tab.1.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581030883997" />
-    <state width="2517" height="348" key="GridCell.Tab.1.right" timestamp="1581030883997">
+    <state width="2517" height="348" key="GridCell.Tab.1.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
+    <state width="2517" height="348" key="GridCell.Tab.1.right" timestamp="1581288728187">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="348" key="GridCell.Tab.1.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581030883997" />
-    <state x="781" y="163" key="SettingsEditor" timestamp="1580376491668">
+    <state width="2517" height="348" key="GridCell.Tab.1.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728187" />
+    <state x="399" y="159" key="SettingsEditor" timestamp="1581276695179">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="781" y="163" key="SettingsEditor/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580376491668" />
+    <state x="399" y="159" key="SettingsEditor/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581276695179" />
     <state x="943" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581114506449">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
