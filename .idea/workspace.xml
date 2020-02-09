@@ -3,34 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ac3d78a-efbb-427c-832c-0abd8f318530" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gorev/templatetags/gorev_sorgulama.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/templatetags/gorev_sorgulama.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gorev/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kanban/local_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/local_settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/gorevler/dosyalar/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/gorevler/dosyalar/default.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/gorevler/dosyalar/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/gorevler/dosyalar/wordpress-5.3.2-tr_TR.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400_RqCEMJ4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400_pcEfbGC.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400_vASWGcg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profil/foto/default.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profil/foto/indir.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projeler/dosyalar/Ekran_Alıntısı.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projeler/dosyalar/wordpress-5.3.2-tr_TR.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proje/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/proje/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/flatpickr.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/js/flatpickr.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/gorev/gorev_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/gorev/gorev_detay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/kullanici/giris_yap.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/giris_yap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/kullanici/kayit_ol.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/kayit_ol.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/kullanici/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum_sayfa.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum_sayfa.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proje/proje_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proje/proje_detay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/proje/proje_kanban_board.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proje/proje_kanban_board.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/takim/takim_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/takim/takim_detay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/utilities/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/utilities/layout.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,6 +147,7 @@
       <workItem from="1581249104398" duration="8161000" />
       <workItem from="1581276582539" duration="12128000" />
       <workItem from="1581288809356" duration="128000" />
+      <workItem from="1581289064703" duration="100000" />
     </task>
     <servers />
   </component>
