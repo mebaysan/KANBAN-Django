@@ -18,3 +18,13 @@ def gorev_kac_islem_var(gorev):
     toplam_islem = gorev.islemler.all().count()
     biten_islemler = gorev.islemler.filter(islem_sureci='bitti').count()
     return "{}/{}".format(biten_islemler, toplam_islem)
+
+@register.filter(name='gorev_basari_durumu')
+def gorev_basari_durumu(gorev):
+    toplam_islem = gorev.islemler.all().count()
+    biten_islemler = gorev.islemler.filter(islem_sureci='bitti').count()
+    try:
+        sonuc = (biten_islemler / toplam_islem) * 100
+    except ZeroDivisionError:
+        sonuc = (0/1) * 100
+    return "{}".format(sonuc)

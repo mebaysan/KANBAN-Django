@@ -1,16 +1,28 @@
 {% extends 'utilities/layout.html' %}
 {% load static %}
 {% block icerik %}
-    <form action="{% url 'kullanici:giris_yap' %}" method="post" id="giris_form">
-        {% csrf_token %}
-        <input type="text" placeholder="Kullanıcı Adı" name="username" id="username" required>
-        <input type="password" placeholder="Şifre" name="password" id="password" required>
-        <input type="submit" value="Giriş">
-    </form>
-    <br><br><br><br><br><br><br>
-    <form action="{% url 'kullanici:kullanici_sifremi_unuttum' %}" method="post">
-    {% csrf_token %}
-        <input type="email" name="email" placeholder="Mail adresiniz">
-        <input type="submit" value="Gönder">
-    </form>
+
+    <div class="text-center">
+        <h1 class="h2">Hoş Geldiniz &#x1f44b;</h1>
+        <p class="lead">Hesabınıza erişmek için lütfen giriş yapın</p>
+        <form action="{% url 'kullanici:giris_yap' %}" method="post" id="giris_form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Kullanıcı Adı veya E-Mail" name="username"
+                       id="username" required/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="Şifre" name="password" id="password" required/>
+                <div class="text-right">
+                    <small><a href="{% url 'kullanici:sifremi_unuttum_sayfa' %}">Şifrenizi mi unuttunuz?</a>
+                    </small>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-block btn-primary" role="button" type="submit">
+                Giriş
+            </button>
+            <small>Hesabınız yok mu? <a href="{% url 'kullanici:kayit_ol' %}">Ücretsiz bir tane oluşturun</a>
+            </small>
+        </form>
+    </div>
 {% endblock %}

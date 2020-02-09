@@ -1,11 +1,21 @@
 {% extends 'utilities/layout.html' %}
-{% load static %}
 {% block icerik %}
-    <form action="{% url 'kullanici:kullanici_sifremi_unuttum_onay' hash=kullanici.password_reset_hash %}"
-          method="post">
-    {% csrf_token %}
-        <input type="password" placeholder="Yeni Şifre" name="yeni_sifre">
-        <input type="password" placeholder="Eski Şifre" name="eski_sifre">
-        <input type="submit" value="Gönder">
-    </form>
+        <div class="text-center">
+            <h1 class="h2">Şifre Güncelle &#128519;</h1>
+            <form action="{% url 'kullanici:kullanici_sifremi_unuttum_onay' hash=kullanici.password_reset_hash %}"
+                  method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" type="password" placeholder="Yeni Şifre" name="yeni_sifre">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" placeholder="Eski Şifre" name="eski_sifre">
+
+                </div>
+                <button class="btn btn-lg btn-block btn-primary" role="button" type="submit">
+                    Şifremi Güncelle
+                </button>
+            </form>
+        </div>
 {% endblock %}
+

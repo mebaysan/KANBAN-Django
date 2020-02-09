@@ -4,9 +4,15 @@
     <list default="true" id="9ac3d78a-efbb-427c-832c-0abd8f318530" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gorev/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kanban/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proje/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/proje/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorev/templatetags/gorev_sorgulama.py" beforeDir="false" afterPath="$PROJECT_DIR$/gorev/templatetags/gorev_sorgulama.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kullanici/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kullanici/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/kullanici/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profil/foto/6X2Ai-Ft_400x400_J9XA5cO.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/kullanici/giris_yap.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/giris_yap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/kullanici/kayit_ol.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/kayit_ol.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/kullanici/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kullanici/sifremi_unuttum.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/utilities/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/utilities/layout.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,12 +50,21 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/staticfiles/img" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\menes\Desktop\kanban\staticfiles\img" />
+      <recent name="C:\Users\menes\Desktop\kanban\staticfiles" />
+      <recent name="C:\Users\menes\Desktop\kanban\staticfiles\css" />
+      <recent name="C:\Users\menes\Desktop\kanban\staticfiles\js" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="kanban" type="Python.DjangoServer" factoryName="Django server">
@@ -123,6 +138,8 @@
       <workItem from="1581113232003" duration="1690000" />
       <workItem from="1581115943993" duration="178000" />
       <workItem from="1581212634655" duration="1694000" />
+      <workItem from="1581249017579" duration="67000" />
+      <workItem from="1581249104398" duration="8161000" />
     </task>
     <servers />
   </component>
@@ -134,38 +151,38 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1059" y="275" key="FileChooserDialogImpl/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580254208094" />
-    <state width="2517" height="101" key="GridCell.Tab.0.bottom" timestamp="1581214331461">
+    <state width="2517" height="101" key="GridCell.Tab.0.bottom" timestamp="1581257281296">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.bottom.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="101" key="GridCell.Tab.0.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581214331461" />
-    <state width="2517" height="101" key="GridCell.Tab.0.center" timestamp="1581214331460">
+    <state width="2517" height="101" key="GridCell.Tab.0.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581257281296" />
+    <state width="2517" height="101" key="GridCell.Tab.0.center" timestamp="1581257281296">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.center.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="101" key="GridCell.Tab.0.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581214331460" />
-    <state width="2517" height="101" key="GridCell.Tab.0.left" timestamp="1581214331460">
+    <state width="2517" height="101" key="GridCell.Tab.0.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581257281296" />
+    <state width="2517" height="101" key="GridCell.Tab.0.left" timestamp="1581257281296">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.left.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="101" key="GridCell.Tab.0.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581214331460" />
-    <state width="2517" height="101" key="GridCell.Tab.0.right" timestamp="1581214331461">
+    <state width="2517" height="101" key="GridCell.Tab.0.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581257281296" />
+    <state width="2517" height="101" key="GridCell.Tab.0.right" timestamp="1581257281296">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.right.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="101" key="GridCell.Tab.0.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581214331461" />
+    <state width="2517" height="101" key="GridCell.Tab.0.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581257281296" />
     <state width="2517" height="348" key="GridCell.Tab.1.bottom" timestamp="1581030883997">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

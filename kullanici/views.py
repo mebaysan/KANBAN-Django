@@ -11,7 +11,7 @@ import hashlib
 from kanban.settings import BASE_URL
 from proje.models import Proje
 from gorev.models import Gorev
-from django.http import request
+from django.http import request, HttpResponseForbidden
 from takim.models import Takim
 
 
@@ -132,20 +132,24 @@ def kullanici_sifre_guncelle(request):
     return redirect('kullanici:giris_yap')
 
 
+def kullanici_sifremi_unuttum_sayfa(request):
+    return render(request, 'kullanici/sifremi_unuttum_sayfa.html')
+
+
 @require_http_methods(['POST'])
 def kullanici_sifremi_unuttum(request):
     email = request.POST.get('email')
     try:
-        kullanici = Kullanici.objects.get(email=email) # gelen epostaya sahip kullanıcı var mı
+        kullanici = Kullanici.objects.get(email=email)  # gelen epostaya sahip kullanıcı var mı
     except:
         messages.warning(request, 'Eposta adresi bulunamadığından işlem gerçekleştirilemedi')
-        return redirect('kullanici:giris_yap')
+        return redirect('kullanici:sifremi_unuttum_sayfa')
     kullanici.set_password('Geçici Şifre')  # Bir stringi hashleyerek kullanıcının şifresi yapıyoruz
     username = kullanici.username
-    hashlenen_bilgi = hashlib.sha256("{}".format(email).encode('utf-8')).hexdigest() # kullanıcıya token oluşturuyoruz
+    hashlenen_bilgi = hashlib.sha256("{}".format(email).encode('utf-8')).hexdigest()  # kullanıcıya token oluşturuyoruz
     kullanici.password_reset_hash = hashlenen_bilgi
     kullanici.save()
-    link = BASE_URL + reverse('kullanici:kullanici_sifremi_unuttum_onay',kwargs={'hash':hashlenen_bilgi})
+    link = BASE_URL + reverse('kullanici:kullanici_sifremi_unuttum_onay', kwargs={'hash': hashlenen_bilgi})
     konu = 'Şifre Güncellemesi Hakkında'
     mesaj = 'Sayın {} şifrenizi güncellemeniz için gerekli link ektedir. Bu işlemden haberiniz yoksa destek ekip ile iletişime geçmelisiniz.\nLink:{}'.format(
         kullanici.username, link)
@@ -168,3 +172,15 @@ def kullanici_sifremi_unuttum_onay(request, hash):
         'kullanici': kullanici
     }
     return render(request, 'kullanici/sifremi_unuttum.html', context=context)
+
+
+@login_required
+def hesap_ayarlari(request, uname):
+    kullanici = get_object_or_404(Kullanici, username=uname)
+    if request.user == kullanici:
+        context = {
+            'kullanici': kullanici
+        }
+        return render(request, 'kullanici/hesap_ayarlari.html', context=context)
+    else:
+        return HttpResponseForbidden()

@@ -11,5 +11,8 @@ urlpatterns = [
     path('guncelle/', views.kullanici_guncelle, name='kullanici_guncelle'),
     path('sifre/guncelle', views.kullanici_sifre_guncelle, name='kullanici_sifre_guncelle'),
     path('sifre/sifremi-unuttum', views.kullanici_sifremi_unuttum, name='kullanici_sifremi_unuttum'),
-    path('sifre/sifremi-unuttum/onay/<str:hash>', views.kullanici_sifremi_unuttum_onay, name='kullanici_sifremi_unuttum_onay'),
+    path('sifre/sifremi-unuttum/onay/<str:hash>', views.kullanici_sifremi_unuttum_onay,
+         name='kullanici_sifremi_unuttum_onay'),
+    path('sifremi_unuttum/', views.kullanici_sifremi_unuttum_sayfa, name='sifremi_unuttum_sayfa'),
+    path('profil/hesap_ayarlari/<str:uname>/', views.hesap_ayarlari, name='hesap_ayarlari'),
 ]

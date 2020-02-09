@@ -1,29 +1,82 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/utilities/Toast.min.css' %}">
-    <script src="{% static 'js/utilities/Toast.min.js' %}"></script>
-    {% block ozel_css %} {% endblock %}
+    <meta charset="utf-8">
     <title>KANBAN Uygulaması</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A project management Bootstrap theme by Medium Rare">
+    <link rel="stylesheet" href="{% static 'css/utilities/Toast.min.css' %}">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <script src="{% static 'js/utilities/Toast.min.js' %}"></script>
+
+    {% block ozel_css %} {% endblock %}
 </head>
+
 <body>
-{% block icerik %}
-{% endblock icerik %}
 
-{% if messages %}
-    {% for message in messages %}
-        <script>
-            new Toast({
-                message: '{{ message }}',
-                type: '{{ message.tags }}'
-            });
+<div class="layout layout-nav-top">
+    {% if request.user.is_authenticated %}
+        {% include 'utilities/navbar.html' %}
+    {% endif %}
+    <div class="main-container">
 
-        </script>
-    {% endfor %}
-{% endif %}
-<script src="{% static 'js/utilities/jquery.js' %}"></script>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="text-center d-flex align-items-center justify-content-center pt-5">
+                        <div>
+
+                            {% block icerik %}
+                            {% endblock icerik %}
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <script>
+                                        new Toast({
+                                            message: '{{ message }}',
+                                            type: '{{ message.tags }}'
+                                        });
+
+                                    </script>
+                                {% endfor %}
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Required vendor scripts (Do not remove) -->
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+<!-- Optional Vendor Scripts (Remove the plugin script here and comment initializer script out of index.js if site does not use that feature) -->
+<!-- Autosize - resizes textarea inputs as user types -->
+<script type="text/javascript" src="{% static 'js/autosize.min.js' %}"></script>
+<!-- Flatpickr (calendar/date/time picker UI) -->
+<script type="text/javascript" src="{% static 'js/flatpickr.min.js' %}"></script>
+<!-- Prism - displays formatted code boxes -->
+<script type="text/javascript" src="{% static 'js/prism.js' %}"></script>
+<!-- Shopify Draggable - drag, drop and sort items on page -->
+<script type="text/javascript" src="{% static 'js/draggable.bundle.legacy.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/swap-animation.js' %}"></script>
+<!-- Dropzone - drag and drop files onto the page for uploading -->
+<script type="text/javascript" src="{% static 'js/dropzone.min.js' %}"></script>
+<!-- List.js - filter list elements -->
+<script type="text/javascript" src="{% static 'js/list.min.js' %}"></script>
+
+<!-- Required theme scripts (Do not remove) -->
+<script type="text/javascript" src="{% static 'js/theme.js' %}"></script>
 {% block ozel_js %}
 {% endblock ozel_js %}
 </body>

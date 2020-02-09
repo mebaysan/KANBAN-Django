@@ -1,0 +1,135 @@
+{% extends 'utilities/layout.html' %}
+{% load static %}
+
+
+
+{% block icerik %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-3 mb-3">
+                <ul class="nav nav-tabs flex-lg-column" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                           aria-controls="profile" aria-selected="true">Hesap Ayarları</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab"
+                           aria-controls="password" aria-selected="false">Şifre</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xl-8 col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" role="tabpanel" id="profile">
+                                <div class="media mb-4">
+                                    <img alt="Image" src="{{ kullanici.profil_foto.url }}" class="avatar avatar-lg"/>
+
+                                </div>
+                                <!--end of avatar-->
+                                <form action="{% url 'kullanici:kullanici_guncelle' %}" enctype="multipart/form-data"
+                                      method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group row align-items-center">
+                                        <div class="media-body ml-3">
+                                            <div class="custom-file custom-file-naked d-block mb-1">
+                                                <input type="file" class="custom-file-input d-none" id="avatar-file"
+                                                       name="profil_foto">
+                                                <label class="custom-file-label position-relative" for="avatar-file">
+                              <span class="btn btn-primary">
+                                Profil Fotoğrafı Yükle
+                              </span>
+                                                </label>
+                                            </div>
+                                            <small>
+                                                En iyi sonuçlar için, .jpg veya .png biçiminde en az 256 piksele 256
+                                                piksellik bir resim kullanın</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-3">Ad</label>
+                                        <div class="col">
+                                            <input type="text" placeholder="Ad" value="{{ kullanici.first_name }}"
+                                                   name="ad" class="form-control" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-3">Soyad</label>
+                                        <div class="col">
+                                            <input type="text" placeholder="Soyad" value="{{ kullanici.last_name }}"
+                                                   name="soyad" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-3">Email</label>
+                                        <div class="col">
+                                            <input type="email" placeholder="Email Adresiniz"
+                                                   name="email" class="form-control" value="{{ kullanici.email }}"
+                                                   required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-3">Lokasyon</label>
+                                        <div class="col">
+                                            <input type="text" placeholder="Lokasyonunuzu Girin" name="lokasyon"
+                                                   class="form-control" value="{{ kullanici.lokasyon }}"/>
+                                            <small>İl/İlçe şeklinde giriniz</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-3">Ünvan</label>
+                                        <div class="col">
+                                            <textarea placeholder="Kendinize bir Title girin" name="title"
+                                                      class="form-control" rows="4">{{ kullanici.title }}</textarea>
+                                            <small>Herkese açık profilinizde gözükecek</small>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" role="tabpanel" id="password">
+                                <form action="{% url 'kullanici:kullanici_sifre_guncelle' %}" method="post"
+                                      id="sifre_guncelle_form">
+                                    {% csrf_token %}
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-3">Mevcut Şifre</label>
+                                        <div class="col">
+                                            <input type="password" placeholder="Mevcut Şifre"
+                                                   name="eski_sifre" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-3">Yeni Şifre</label>
+                                        <div class="col">
+                                            <input type="password" placeholder="Yeni Şifre"
+                                                   name="yeni_sifre" id="yeni_sifre" class="form-control"/>
+                                            <small>Güçlü bir şifre koymanızı rica ederiz</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-3">Yeni Şifre Kontrol</label>
+                                        <div class="col">
+                                            <input type="password" placeholder="Yeni Şifre"
+                                                   name="yeni_sifre_kontrol" id="yeni_sifre_kontrol"
+                                                   class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Şifremi Değiştir</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block ozel_js %}
+    <script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}
