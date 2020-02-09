@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ac3d78a-efbb-427c-832c-0abd8f318530" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kanban/local_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/local_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +147,8 @@
       <workItem from="1581249104398" duration="8161000" />
       <workItem from="1581276582539" duration="12128000" />
       <workItem from="1581288809356" duration="128000" />
-      <workItem from="1581289064703" duration="100000" />
+      <workItem from="1581289064703" duration="133000" />
+      <workItem from="1581289525298" duration="17000" />
     </task>
     <servers />
   </component>
