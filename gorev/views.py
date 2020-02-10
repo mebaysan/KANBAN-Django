@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, JsonResponse
 # Create your views here.
-from gorev.models import Gorev, GorevGrubu, Islem, Not
+from gorev.models import Gorev, GorevGrubu, Islem, Not, GorevDosya
 from kullanici.models import Kullanici
 from proje.models import Proje
 from aktivite.models import Aktivite
@@ -38,7 +38,7 @@ def gorev_detay(request, gorev_slug):
     islemler = gorev.islemler.all()
     notlar = gorev.notlar.all()
     dosyalar = gorev.dosyalar.all()
-    aktiviteler = Aktivite.objects.filter(gorev=gorev)
+    aktiviteler = Aktivite.objects.filter(gorev=gorev).order_by('-olusturulma_tarihi')
     context = {
         'gorev': gorev,
         'islemler': islemler,
@@ -78,3 +78,25 @@ def islem_ekle(request, gorev_slug):
                              aktivite="{} adlı işlemi ekledi".format(islem.ad))
     yeni_aktivite.save()
     return redirect(reverse('gorev:gorev_detay', kwargs={'gorev_slug': gorev_slug}))
+
+
+@login_required
+def gorev_dosya_ekle(request, gorev_slug):
+    gorev = Gorev.objects.get(slug=gorev_slug)
+    dosyalar = request.FILES.getlist('file')
+    flag = True
+    for dosya in dosyalar:
+        try:
+            gorev_dosyasi = GorevDosya(dosya=dosya, yukleyen=request.user, gorev=gorev,
+                                       content_type=dosya.content_type)
+            gorev_dosyasi.save()
+            yeni_islem = Aktivite(proje=gorev.proje, gorev=gorev, kullanici=request.user, aktivite_tipi='ekleme',
+                                  aktivite="{} adlı dosyayı ekledi".format(gorev_dosyasi.ad))
+            yeni_islem.save()
+        except:
+            flag = False
+    if flag:
+        messages.success(request, "Dosyalar başarıyla eklendi")
+        return JsonResponse({'data': True})
+    else:
+        return JsonResponse({'data': False})

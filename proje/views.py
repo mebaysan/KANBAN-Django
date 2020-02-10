@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse, JsonResponse
 # Create your views here.
 from gorev.models import Gorev, GorevGrubu
 from kullanici.models import Kullanici
@@ -18,14 +18,15 @@ def proje_detay(request, proje_slug):
     yapilanlar = proje.gorevler.filter(gorev_durum='devam').order_by('bitis_tarihi')
     bitenler = proje.gorevler.filter(gorev_durum='bitti')
     dosyalar = ProjeDosya.objects.filter(proje=proje)
-    aktiviteler = Aktivite.objects.filter(proje=proje).order_by('-olusturulma_tarihi') # en yeniden eskiye doğru sıralar
+    aktiviteler = Aktivite.objects.filter(proje=proje).order_by(
+        '-olusturulma_tarihi')  # en yeniden eskiye doğru sıralar
     context = {
         'proje': proje,
         'dosyalar': dosyalar,
         'yapilacaklar': yapilacaklar,
         'yapilanlar': yapilanlar,
         'bitenler': bitenler,
-        'aktiviteler':aktiviteler
+        'aktiviteler': aktiviteler
     }
     return render(request, 'proje/proje_detay.html', context=context)
 
@@ -68,3 +69,24 @@ def proje_kanban_board(request, proje_slug):
         'bitenler': bitenler
     }
     return render(request, 'proje/proje_kanban_board.html', context=context)
+
+
+@login_required
+def proje_dosya_ekle(request, proje_slug):
+    proje = Proje.objects.get(slug=proje_slug)
+    dosyalar = request.FILES.getlist('file')
+    flag = True
+    for dosya in dosyalar:
+        try:
+            proje_dosyasi = ProjeDosya(dosya=dosya, yukleyen=request.user, proje=proje, content_type=dosya.content_type)
+            proje_dosyasi.save()
+            yeni_islem = Aktivite(proje=proje, kullanici=request.user, aktivite_tipi='ekleme',
+                                  aktivite="{} adlı dosyayı ekledi".format(proje_dosyasi.ad))
+            yeni_islem.save()
+        except:
+            flag = False
+    if flag:
+        messages.success(request, "Dosyalar başarıyla eklendi")
+        return JsonResponse({'data': True})
+    else:
+        return JsonResponse({'data': False})

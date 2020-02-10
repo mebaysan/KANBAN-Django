@@ -128,6 +128,7 @@ class GorevDosya(models.Model):
     dosya = models.FileField(upload_to='gorevler/dosyalar/')
     ad = models.CharField(max_length=255, blank=True)
     yukleyen = models.ForeignKey(to='kullanici.Kullanici',related_name='gorev_dosyalari',on_delete=models.CASCADE)
+    content_type = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Görev Dosyası'

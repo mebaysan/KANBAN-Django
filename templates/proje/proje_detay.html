@@ -340,7 +340,9 @@
                                             </li>
                                         </ul>
                                         {% if proje.takim.sahip == request.user %}
-                                            <form class="dropzone" action="https://mediumra.re/dropzone/upload.php">
+                                            <form class="dropzone"
+                                                  action="{% url 'proje:proje_dosya_ekle' proje_slug=proje.slug %}">
+                                                {% csrf_token %}
                                                 <span class="dz-message">Dosyaları sürükleyin veya tıklayın</span>
                                             </form>
                                         {% endif %}

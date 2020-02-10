@@ -57,6 +57,7 @@ class ProjeDosya(models.Model):
     dosya = models.FileField(upload_to='projeler/dosyalar/')
     yukleyen = models.ForeignKey(to='kullanici.Kullanici', related_name='proje_dosyalari', on_delete=models.CASCADE)
     ad = models.CharField(max_length=255, blank=True)
+    content_type = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Proje Dosyası'
@@ -65,6 +66,7 @@ class ProjeDosya(models.Model):
     def __str__(self):
         return self.proje.ad
 
-    def save(self, *args, **kwargs): # save edilmeden önce
-        self.ad = os.path.basename(self.dosya.name) # basename fonksiyonu ile içine verdiğimiz pathin (dosya.name) dosya adını verir
+    def save(self, *args, **kwargs):  # save edilmeden önce
+        self.ad = os.path.basename(
+            self.dosya.name)  # basename fonksiyonu ile içine verdiğimiz pathin (dosya.name) dosya adını verir
         super(ProjeDosya, self).save(*args, **kwargs)

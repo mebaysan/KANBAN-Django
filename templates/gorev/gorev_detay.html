@@ -251,7 +251,9 @@
                                         </li>
                                     </ul>
                                     {% if request.user in gorev.uyeler or request.user == gorev.proje.takim.sahip %}
-                                        <form class="dropzone" action="https://mediumra.re/dropzone/upload.php">
+                                        <form class="dropzone"
+                                              action="{% url 'gorev:gorev_dosya_ekle' gorev_slug=gorev.slug %}">
+                                            {% csrf_token %}
                                             <span class="dz-message">Dosyaları sürükleyin veya tıklayın</span>
                                         </form>
                                     {% endif %}
