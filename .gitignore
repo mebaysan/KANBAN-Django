@@ -1,4 +1,6 @@
 kanban/local_settings.py
 db.sqlite3
-static
-media
+static/
+media/
+.idea/
+__pycache__/
