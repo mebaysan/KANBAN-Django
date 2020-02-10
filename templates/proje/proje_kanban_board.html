@@ -32,16 +32,16 @@
                     <div class="card-list">
                         <div class="card-list-header">
                             <h6>ToDo</h6>
-                            <div class="dropdown">
-                                <button class="btn-options" type="button" id="cardlist-dropdown-button-1"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Güncelle</a>
-                                    <a class="dropdown-item text-danger" href="#">Sil</a>
-                                </div>
-                            </div>
+                            {#                            <div class="dropdown">#}
+                            {#                                <button class="btn-options" type="button" id="cardlist-dropdown-button-1"#}
+                            {#                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+                            {#                                    <i class="material-icons">more_vert</i>#}
+                            {#                                </button>#}
+                            {#                                <div class="dropdown-menu dropdown-menu-right">#}
+                            {#                                    <a class="dropdown-item" href="#">Güncelle</a>#}
+                            {#                                    <a class="dropdown-item text-danger" href="#">Sil</a>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
                         </div>
                         <div class="card-list-body">
 
@@ -62,8 +62,9 @@
                                                 <i class="material-icons">more_vert</i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">Güncelle</a>
-                                                <a class="dropdown-item text-danger" href="#">Sil</a>
+                                                <a class="dropdown-item"
+                                                   href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">Detay</a>
+                                                {#                                                <a class="dropdown-item text-danger" href="#">Sil</a>#}
                                             </div>
                                         </div>
                                         <div class="card-title">
@@ -103,9 +104,9 @@
 
 
                         </div>
-                        <div class="card-list-footer">
-                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>
-                        </div>
+                        {#                        <div class="card-list-footer">#}
+                        {#                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>#}
+                        {#                        </div>#}
                     </div>
                 </div>
 
@@ -113,16 +114,16 @@
                     <div class="card-list">
                         <div class="card-list-header">
                             <h6>InProgress</h6>
-                            <div class="dropdown">
-                                <button class="btn-options" type="button" id="cardlist-dropdown-button-2"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Edit</a>
-                                    <a class="dropdown-item text-danger" href="#">Archive List</a>
-                                </div>
-                            </div>
+                            {#                            <div class="dropdown">#}
+                            {#                                <button class="btn-options" type="button" id="cardlist-dropdown-button-2"#}
+                            {#                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+                            {#                                    <i class="material-icons">more_vert</i>#}
+                            {#                                </button>#}
+                            {#                                <div class="dropdown-menu dropdown-menu-right">#}
+                            {#                                    <a class="dropdown-item" href="#">Edit</a>#}
+                            {#                                    <a class="dropdown-item text-danger" href="#">Archive List</a>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
                         </div>
                         <div class="card-list-body">
 
@@ -142,8 +143,9 @@
                                                 <i class="material-icons">more_vert</i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">Güncelle</a>
-                                                <a class="dropdown-item text-danger" href="#">Sil</a>
+                                                <a class="dropdown-item"
+                                                   href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">Detay</a>
+                                                {#                                                <a class="dropdown-item text-danger" href="#">Sil</a>#}
                                             </div>
                                         </div>
                                         <div class="card-title">
@@ -183,9 +185,9 @@
 
 
                         </div>
-                        <div class="card-list-footer">
-                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>
-                        </div>
+                        {#                        <div class="card-list-footer">#}
+                        {#                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>#}
+                        {#                        </div>#}
                     </div>
                 </div>
 
@@ -193,16 +195,16 @@
                     <div class="card-list">
                         <div class="card-list-header">
                             <h6>Done</h6>
-                            <div class="dropdown">
-                                <button class="btn-options" type="button" id="cardlist-dropdown-button-3"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Güncelle</a>
-                                    <a class="dropdown-item text-danger" href="#">Sil</a>
-                                </div>
-                            </div>
+                            {#                            <div class="dropdown">#}
+                            {#                                <button class="btn-options" type="button" id="cardlist-dropdown-button-3"#}
+                            {#                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+                            {#                                    <i class="material-icons">more_vert</i>#}
+                            {#                                </button>#}
+                            {#                                <div class="dropdown-menu dropdown-menu-right">#}
+                            {#                                    <a class="dropdown-item" href="#">Güncelle</a>#}
+                            {#                                    <a class="dropdown-item text-danger" href="#">Sil</a>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
                         </div>
                         <div class="card-list-body">
 
@@ -222,8 +224,9 @@
                                                 <i class="material-icons">more_vert</i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">Güncelle</a>
-                                                <a class="dropdown-item text-danger" href="#">Sil</a>
+                                                <a class="dropdown-item"
+                                                   href="{% url 'gorev:gorev_detay' gorev_slug=gorev.slug %}">Detay</a>
+                                                {#                                                <a class="dropdown-item text-danger" href="#">Sil</a>#}
                                             </div>
                                         </div>
                                         <div class="card-title">
@@ -260,13 +263,11 @@
                                     </div>
                                 </div>
                             {% endfor %}
-
-
                         </div>
 
-                        <div class="card-list-footer">
-                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>
-                        </div>
+                        {#                        <div class="card-list-footer">#}
+                        {#                            <button class="btn btn-link btn-sm text-small">Görev Ekle</button>#}
+                        {#                        </div>#}
                     </div>
                 </div>
 

@@ -18,9 +18,11 @@
                                 </li>
                             {% endfor %}
                         </ul>
+                        {% if request.user == takim.sahip %}
                         <button class="btn btn-round" data-toggle="modal" data-target="#user-invite-modal">
                             <i class="material-icons">add</i>
                         </button>
+                        {% endif %}
                     </div>
                 </div>
                 <hr>
@@ -41,9 +43,11 @@
                             <div class="row content-list-head">
                                 <div class="col-auto">
                                     <h3>Projeler</h3>
+                                    {% if request.user == takim.sahip %}
                                     <button class="btn btn-round" data-toggle="modal" data-target="#project-add-modal">
                                         <i class="material-icons">add</i>
                                     </button>
+                                    {% endif %}
                                 </div>
                                 <form class="col-md-auto">
                                     <div class="input-group input-group-round">
@@ -130,9 +134,11 @@
                             <div class="row content-list-head">
                                 <div class="col-auto">
                                     <h3>Üyeler</h3>
+                                     {% if request.user == takim.sahip %}
                                     <button class="btn btn-round" data-toggle="modal" data-target="#user-invite-modal">
                                         <i class="material-icons">add</i>
                                     </button>
+                                    {% endif %}
                                 </div>
                                 <form class="col-md-auto">
                                     <div class="input-group input-group-round">

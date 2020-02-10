@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ac3d78a-efbb-427c-832c-0abd8f318530" name="Default Changelist" comment="" />
+    <list default="true" id="9ac3d78a-efbb-427c-832c-0abd8f318530" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/gorev/gorev_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/gorev/gorev_detay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/proje/proje_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proje/proje_detay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/proje/proje_kanban_board.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/proje/proje_kanban_board.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/takim/takim_detay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/takim/takim_detay.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +68,11 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\menes\Desktop\kanban\staticfiles\defaults" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\menes\Desktop\kanban\media\defaults" />
       <recent name="C:\Users\menes\Desktop\kanban\staticfiles\img" />
       <recent name="C:\Users\menes\Desktop\kanban\staticfiles" />
       <recent name="C:\Users\menes\Desktop\kanban\staticfiles\css" />
@@ -147,7 +158,9 @@
       <workItem from="1581289064703" duration="133000" />
       <workItem from="1581289525298" duration="222000" />
       <workItem from="1581291612980" duration="59000" />
-      <workItem from="1581291794714" duration="473000" />
+      <workItem from="1581291794714" duration="880000" />
+      <workItem from="1581292842023" duration="1305000" />
+      <workItem from="1581345606164" duration="2545000" />
     </task>
     <servers />
   </component>
@@ -163,38 +176,38 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1059" y="275" key="FileChooserDialogImpl/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580254208094" />
-    <state width="2517" height="348" key="GridCell.Tab.0.bottom" timestamp="1581288728186">
+    <state width="2517" height="101" key="GridCell.Tab.0.bottom" timestamp="1581348134925">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.bottom.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="348" key="GridCell.Tab.0.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
-    <state width="2517" height="348" key="GridCell.Tab.0.center" timestamp="1581288728186">
+    <state width="2517" height="101" key="GridCell.Tab.0.bottom/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581348134925" />
+    <state width="2517" height="101" key="GridCell.Tab.0.center" timestamp="1581348134925">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.center.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="348" key="GridCell.Tab.0.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
-    <state width="2517" height="348" key="GridCell.Tab.0.left" timestamp="1581288728186">
+    <state width="2517" height="101" key="GridCell.Tab.0.center/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581348134925" />
+    <state width="2517" height="101" key="GridCell.Tab.0.left" timestamp="1581348134925">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.left.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="348" key="GridCell.Tab.0.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
-    <state width="2517" height="348" key="GridCell.Tab.0.right" timestamp="1581288728186">
+    <state width="2517" height="101" key="GridCell.Tab.0.left/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581348134925" />
+    <state width="2517" height="101" key="GridCell.Tab.0.right" timestamp="1581348134925">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1580765153083">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="2517" height="159" key="GridCell.Tab.0.right.inPresentationMode/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1580765153083" />
-    <state width="2517" height="348" key="GridCell.Tab.0.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581288728186" />
+    <state width="2517" height="101" key="GridCell.Tab.0.right/-1366.304.1366.728/0.0.2560.1040@0.0.2560.1040" timestamp="1581348134925" />
     <state width="2517" height="348" key="GridCell.Tab.1.bottom" timestamp="1581288728187">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

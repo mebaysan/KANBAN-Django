@@ -10,8 +10,9 @@
                 <div class="col-xl-10 col-lg-11">
                     <div class="page-header">
                         <h1>{{ proje.ad }}</h1>
-                        <p class="lead">{{ proje.aciklama }}<br>                    <span><a href="{% url 'proje:kanban_board' proje_slug=proje.slug %}">Kanban Tahtasına Git</a></span>
-</p>
+                        <p class="lead">{{ proje.aciklama }}<br> <span><a
+                                href="{% url 'proje:kanban_board' proje_slug=proje.slug %}">Kanban Tahtasına Git</a></span>
+                        </p>
                         <div class="d-flex align-items-center">
                             <ul class="avatars">
                                 {% for uye in proje.uyeler.all %}
@@ -26,9 +27,11 @@
 
 
                             </ul>
-                            <button class="btn btn-round" data-toggle="modal" data-target="#user-manage-modal">
-                                <i class="material-icons">add</i>
-                            </button>
+                            {% if proje.takim.sahip == request.user %}
+                                <button class="btn btn-round" data-toggle="modal" data-target="#user-manage-modal">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            {% endif %}
                         </div>
                         <div>
                             <div class="progress">
@@ -64,9 +67,11 @@
                             <div class="row content-list-head">
                                 <div class="col-auto">
                                     <h3>Görevler</h3>
-                                    <button class="btn btn-round" data-toggle="modal" data-target="#task-add-modal">
-                                        <i class="material-icons">add</i>
-                                    </button>
+                                    {% if proje.takim.sahip == request.user %}
+                                        <button class="btn btn-round" data-toggle="modal" data-target="#task-add-modal">
+                                            <i class="material-icons">add</i>
+                                        </button>
+                                    {% endif %}
                                 </div>
                                 <form class="col-md-auto">
                                     <div class="input-group input-group-round">
@@ -120,20 +125,23 @@
                                                             <i class="material-icons">playlist_add_check</i>
                                                             <span>{{ gorev|gorev_kac_islem_var }}</span>
                                                         </div>
-                                                        <div class="dropdown card-options">
-                                                            <button class="btn-options" type="button"
-                                                                    id="task-dropdown-button-1" data-toggle="dropdown"
-                                                                    aria-haspopup="true" aria-expanded="false">
-                                                                <i class="material-icons">more_vert</i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" href="#">Başarılı Olarak
-                                                                    İşaretle</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item text-danger"
-                                                                   href="#">Sil</a>
+                                                        {% if proje.takim.sahip == request.user %}
+                                                            <div class="dropdown card-options">
+                                                                <button class="btn-options" type="button"
+                                                                        id="task-dropdown-button-1"
+                                                                        data-toggle="dropdown"
+                                                                        aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="material-icons">more_vert</i>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a class="dropdown-item" href="#">Başarılı Olarak
+                                                                        İşaretle</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item text-danger"
+                                                                       href="#">Sil</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,20 +186,23 @@
                                                             <i class="material-icons">playlist_add_check</i>
                                                             <span>{{ gorev|gorev_kac_islem_var }}</span>
                                                         </div>
-                                                        <div class="dropdown card-options">
-                                                            <button class="btn-options" type="button"
-                                                                    id="task-dropdown-button-1" data-toggle="dropdown"
-                                                                    aria-haspopup="true" aria-expanded="false">
-                                                                <i class="material-icons">more_vert</i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" href="#">Başarılı Olarak
-                                                                    İşaretle</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item text-danger"
-                                                                   href="#">Sil</a>
+                                                        {% if proje.takim.sahip == request.user %}
+                                                            <div class="dropdown card-options">
+                                                                <button class="btn-options" type="button"
+                                                                        id="task-dropdown-button-1"
+                                                                        data-toggle="dropdown"
+                                                                        aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="material-icons">more_vert</i>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a class="dropdown-item" href="#">Başarılı Olarak
+                                                                        İşaretle</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item text-danger"
+                                                                       href="#">Sil</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -236,20 +247,23 @@
                                                             <i class="material-icons">playlist_add_check</i>
                                                             <span>{{ gorev|gorev_kac_islem_var }}</span>
                                                         </div>
-                                                        <div class="dropdown card-options">
-                                                            <button class="btn-options" type="button"
-                                                                    id="task-dropdown-button-1" data-toggle="dropdown"
-                                                                    aria-haspopup="true" aria-expanded="false">
-                                                                <i class="material-icons">more_vert</i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" href="#">Başarılı Olarak
-                                                                    İşaretle</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item text-danger"
-                                                                   href="#">Sil</a>
+                                                        {% if proje.takim.sahip == request.user %}
+                                                            <div class="dropdown card-options">
+                                                                <button class="btn-options" type="button"
+                                                                        id="task-dropdown-button-1"
+                                                                        data-toggle="dropdown"
+                                                                        aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="material-icons">more_vert</i>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a class="dropdown-item" href="#">Başarılı Olarak
+                                                                        İşaretle</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item text-danger"
+                                                                       href="#">Sil</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -325,10 +339,11 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                        <form class="dropzone" action="https://mediumra.re/dropzone/upload.php">
-                                            <span class="dz-message">Dosyaları sürükleyin veya tıklayın</span>
-                                        </form>
-
+                                        {% if proje.takim.sahip == request.user %}
+                                            <form class="dropzone" action="https://mediumra.re/dropzone/upload.php">
+                                                <span class="dz-message">Dosyaları sürükleyin veya tıklayın</span>
+                                            </form>
+                                        {% endif %}
                                         <ul class="list-group list-group-activity dropzone-previews flex-column-reverse">
 
                                             {% for dosya in dosyalar %}
@@ -364,9 +379,11 @@
                                                                 </button>
                                                                 <div class="dropdown-menu dropdown-menu-right">
                                                                     <a class="dropdown-item" href="#">İndir</a>
-                                                                    <div class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item text-danger"
-                                                                       href="#">Sil</a>
+                                                                    {% if proje.takim.sahip == request.user %}
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger"
+                                                                           href="#">Sil</a>
+                                                                    {% endif %}
                                                                 </div>
                                                             </div>
                                                         </div>
