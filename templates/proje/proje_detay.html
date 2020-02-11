@@ -134,11 +134,18 @@
                                                                     <i class="material-icons">more_vert</i>
                                                                 </button>
                                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                                    <a class="dropdown-item" href="#">Başarılı Olarak
-                                                                        İşaretle</a>
-                                                                    <div class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item text-danger"
-                                                                       href="#">Sil</a>
+                                                                    <a class="dropdown-item"
+                                                                       href="{% url 'gorev:gorev_durum_degistir_inprogress' gorev_slug=gorev.slug %}"
+                                                                       id="gorev-durum-degistir">
+
+                                                                        Yapım Aşamasına Ekle
+
+                                                                    </a>
+                                                                    {% if request.user == gorev.proje.takim.sahip %}
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger"
+                                                                           href="{% url 'gorev:gorev_sil' gorev_slug=gorev.slug %}">Sil</a>
+                                                                    {% endif %}
                                                                 </div>
                                                             </div>
                                                         {% endif %}
@@ -195,11 +202,18 @@
                                                                     <i class="material-icons">more_vert</i>
                                                                 </button>
                                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                                    <a class="dropdown-item" href="#">Başarılı Olarak
-                                                                        İşaretle</a>
-                                                                    <div class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item text-danger"
-                                                                       href="#">Sil</a>
+                                                                    <a class="dropdown-item"
+                                                                       href="{% url 'gorev:gorev_durum_degistir_done' gorev_slug=gorev.slug %}">
+
+                                                                        Başarılı Olarak İşaretle
+
+                                                                    </a>
+                                                                    {% if request.user == gorev.proje.takim.sahip %}
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger"
+                                                                           href="{% url 'gorev:gorev_sil' gorev_slug=gorev.slug %}">Sil</a>
+                                                                    {% endif %}
+
                                                                 </div>
                                                             </div>
                                                         {% endif %}
@@ -255,13 +269,15 @@
                                                                         aria-haspopup="true" aria-expanded="false">
                                                                     <i class="material-icons">more_vert</i>
                                                                 </button>
-                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                    <a class="dropdown-item" href="#">Başarılı Olarak
-                                                                        İşaretle</a>
-                                                                    <div class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item text-danger"
-                                                                       href="#">Sil</a>
-                                                                </div>
+                                                                {% if request.user == gorev.proje.takim.sahip %}
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger"
+                                                                           href="{% url 'gorev:gorev_sil' gorev_slug=gorev.slug %}">Sil</a>
+
+                                                                    </div>
+                                                                {% endif %}
                                                             </div>
                                                         {% endif %}
                                                     </div>
@@ -1036,7 +1052,7 @@
                                 <!--end of modal body-->
                                 <div class="modal-footer">
                                     <button role="button" class="btn btn-primary" type="submit">
-                                        Create Task
+                                       Görev Oluştur
                                     </button>
                                 </div>
                             </div>
@@ -1233,4 +1249,7 @@
 
     </div>
 
+{% endblock %}
+{% block ozel_js %}
+    <script type="text/javascript" src="{% static 'js/proje_detay.js' %}"></script>
 {% endblock %}

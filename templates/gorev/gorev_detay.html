@@ -63,7 +63,7 @@
                                 <div class="row content-list-head">
                                     <div class="col-auto">
                                         <h3>İşlemler</h3>
-                                        {% if request.user in gorev.uyeler %}
+                                        {% if request.user in gorev.uyeler.all %}
                                             <button class="btn btn-round" data-toggle="modal"
                                                     data-target="#islem-ekle-modal" data-title="Yeni İşlem">
                                                 <i class="material-icons">add</i>
@@ -99,7 +99,7 @@
                                                                checked
                                                                 {% endif %} >
                                                         <label class="custom-control-label"
-                                                               for="{{ islem.pk }}"></label>
+                                                               for="{{ islem.pk }}" data-pk="{{ islem.pk }}"></label>
                                                         <div>
                                                             <input type="text" placeholder="Checklist item"
                                                                    value="{{ islem.ad }}"
@@ -126,7 +126,7 @@
                                 <div class="row content-list-head">
                                     <div class="col-auto">
                                         <h3>Notlar</h3>
-                                        {% if request.user in gorev.uyeler %}
+                                        {% if request.user in gorev.uyeler.all %}
                                             <button class="btn btn-round" data-toggle="modal"
                                                     data-target="#note-add-modal">
                                                 <i class="material-icons">add</i>
@@ -250,7 +250,7 @@
                                             </div>
                                         </li>
                                     </ul>
-                                    {% if request.user in gorev.uyeler or request.user == gorev.proje.takim.sahip %}
+                                    {% if request.user in gorev.uyeler.all or request.user == gorev.proje.takim.sahip %}
                                         <form class="dropzone"
                                               action="{% url 'gorev:gorev_dosya_ekle' gorev_slug=gorev.slug %}">
                                             {% csrf_token %}
@@ -290,7 +290,7 @@
                                                             </button>
                                                             <div class="dropdown-menu dropdown-menu-right">
                                                                 <a class="dropdown-item" href="#">İndir</a>
-                                                                {% if request.user in gorev.uyeler or request.user == gorev.proje.takim.sahip %}
+                                                                {% if request.user in gorev.uyeler.all or request.user == gorev.proje.takim.sahip %}
                                                                     <div class="dropdown-divider"></div>
                                                                     <a class="dropdown-item text-danger"
                                                                        href="#">Sil</a>
@@ -863,4 +863,7 @@
         {#        </div>#}
 
     </div>
-{% endblock %}
+{% endblock icerik %}
+{% block ozel_js %}
+    <script type="text/javascript" src="{% static 'js/gorev_detay.js' %}"></script>
+{% endblock ozel_js %}

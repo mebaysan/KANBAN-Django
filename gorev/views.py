@@ -100,3 +100,32 @@ def gorev_dosya_ekle(request, gorev_slug):
         return JsonResponse({'data': True})
     else:
         return JsonResponse({'data': False})
+
+
+@login_required
+def gorev_islem_durum_degistir_yapim_asamasi(request, gorev_slug):
+    gorev = get_object_or_404(Gorev, slug=gorev_slug)
+    gorev.gorev_durum = 'devam'
+    gorev.save()
+    messages.success(request, 'Görev başarıyla yapım aşamasına alındı')
+    return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': gorev.proje.slug}))
+
+
+@login_required
+def gorev_islem_durum_degistir_basarili(request, gorev_slug):
+    gorev = get_object_or_404(Gorev, slug=gorev_slug)
+    if gorev.islemler.filter(islem_sureci='devam').count() > 0:
+        messages.warning(request, 'Lütfen mevcut görevleri tamamlayınız')
+        return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': gorev.proje.slug}))
+    else:
+        gorev.gorev_durum = 'bitti'
+        gorev.save()
+        return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': gorev.proje.slug}))
+
+
+@login_required
+def gorev_sil(request, gorev_slug):
+    gorev = get_object_or_404(Gorev, slug=gorev_slug)
+    gorev.delete()
+    messages.success(request, '{} adlı görev başarıyla silindi'.format({gorev.ad}))
+    return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': gorev.proje.slug}))

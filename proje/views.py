@@ -90,3 +90,12 @@ def proje_dosya_ekle(request, proje_slug):
         return JsonResponse({'data': True})
     else:
         return JsonResponse({'data': False})
+
+
+@login_required
+def proje_ajax_islemler(request):
+    if request.method == 'POST' and request.is_ajax(): # eğer gelen istek ajax ve POST ise dedik
+        islem_tipi = request.POST.get('islem_tipi') # ajax kısmında yolladığımız form_data içerisinden alıyoruz
+        if islem_tipi == 'proje_detay_getir':
+            print('proje detayları getiriliyor')
+        return JsonResponse({'data': True})
