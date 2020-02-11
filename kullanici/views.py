@@ -22,6 +22,9 @@ def kayit_ol(request):
             'password': request.POST['password'],
             'password_check': request.POST.get('password_check'),
         }
+        if not gelen_veri['email'] or gelen_veri['password'] or gelen_veri['password_check']:
+            messages.warning(request, 'Lütfen form alanlarını başarılı bir şekilde doldurunuz...')
+            return redirect('kullanici:kayit_ol')
         if len(Kullanici.objects.filter(username=gelen_veri['email'])) == 0 and len(
                 Kullanici.objects.filter(email=gelen_veri['email'])) == 0:
             kullanici = Kullanici(username=gelen_veri['email'], email=gelen_veri['email'])
