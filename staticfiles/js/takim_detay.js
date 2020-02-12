@@ -1,4 +1,5 @@
 $("#proje-yonet").on('click', (e) => {
+    //toDo: proje güncelleme modalı ajax ile doldur
     let proje_slug = $(this).attr('data-slug');
     let form_data = new FormData(); // FormData instance oluşturduk
     form_data.append('proje_slug', proje_slug); // form data'ya  değer ekledik (key-value)

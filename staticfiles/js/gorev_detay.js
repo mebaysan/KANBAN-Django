@@ -1,5 +1,5 @@
 $(".custom-control-label").on('click', (e) => {
-    //toDo: görev işlem durum ajaxz ile değiştir
+    //toDo: görev işlem durum ajax ile değiştir
     console.log($(this).attr('data-pk'));
     // $.ajax({
     //     url: url,

@@ -9,6 +9,9 @@ from kullanici.models import Kullanici
 from proje.models import Proje, ProjeDosya
 from takim.models import Takim
 from aktivite.models import Aktivite
+from django.conf import settings
+from django.http import HttpResponse, Http404
+import os
 
 
 @login_required
@@ -94,8 +97,10 @@ def proje_dosya_ekle(request, proje_slug):
 
 @login_required
 def proje_ajax_islemler(request):
-    if request.method == 'POST' and request.is_ajax(): # eğer gelen istek ajax ve POST ise dedik
-        islem_tipi = request.POST.get('islem_tipi') # ajax kısmında yolladığımız form_data içerisinden alıyoruz
+    if request.method == 'POST' and request.is_ajax():  # eğer gelen istek ajax ve POST ise dedik
+        islem_tipi = request.POST.get('islem_tipi')  # ajax kısmında yolladığımız form_data içerisinden alıyoruz
         if islem_tipi == 'proje_detay_getir':
             print('proje detayları getiriliyor')
         return JsonResponse({'data': True})
+
+
