@@ -124,4 +124,13 @@ def proje_ajax_islemler(request):
             proje = Proje.objects.get(slug=request.POST.get('proje_slug'))
             return JsonResponse(
                 {'proje_adi': proje.ad, 'proje_aciklama': proje.aciklama, 'baslangic_tarihi': proje.baslama_tarihi,
-                 'bitis_tarihi': proje.bitis_tarihi})
+                 'bitis_tarihi': proje.bitis_tarihi, 'proje_slug': proje.slug})
+        elif islem_tipi == 'proje_guncelle':
+            proje = Proje.objects.get(slug=request.POST.get('proje_slug'))
+            proje.ad = request.POST.get('proje_ad')
+            proje.aciklama = request.POST.get('proje_aciklama')
+            proje.baslama_tarihi = request.POST.get('proje_baslangic')
+            proje.bitis_tarihi = request.POST.get('proje_bitis')
+            proje.save()
+            messages.success(request, 'Proje başarıyla güncellendi')
+            return JsonResponse({'success': True})

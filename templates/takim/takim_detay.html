@@ -345,7 +345,7 @@
 
 
                 <form class="modal fade" id="project-manage-modal" tabindex="-1" aria-hidden="true"
-                      action="" method="post">
+                       method="post">
                     {% csrf_token %}
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -401,7 +401,8 @@
                             </div>
                             <!--end of modal body-->
                             <div class="modal-footer">
-                                <button role="button" class="btn btn-primary" type="submit">
+                                <input type="hidden" id="proje_guncelle_slug">
+                                <button role="button" class="btn btn-primary" type="submit" id="proje-guncelle-button">
                                     Proje Güncelle
                                 </button>
                             </div>
