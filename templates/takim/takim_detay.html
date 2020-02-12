@@ -277,33 +277,6 @@
                                         <div class="alert alert-warning text-small" role="alert">
                                             <span>Tarih aralığını istediğiniz zaman değiştirebilirsiniz.</span>
                                         </div>
-                                        <hr>
-                                        <h6>Görünürlük</h6>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="visibility-everyone" name="gizlilik"
-                                                           class="custom-control-input" value="herkese_acik" checked>
-                                                    <label class="custom-control-label"
-                                                           for="visibility-everyone">Herkes</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="visibility-members" name="gizlilik"
-                                                           class="custom-control-input" value="takim_uyeleri">
-                                                    <label class="custom-control-label"
-                                                           for="visibility-members">Takım Üyeleri</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="visibility-me" name="gizlilik"
-                                                           class="custom-control-input" value="sadece_ben">
-                                                    <label class="custom-control-label" for="visibility-me">Ben</label>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="project-add-members" role="tabpanel">
                                         <div class="users-manage" data-filter-list="form-group-users">
@@ -361,13 +334,23 @@
                         </div>
                     </div>
                 </form>
+
+
+
+
+
+
+
+
+
+
                 <form class="modal fade" id="project-manage-modal" tabindex="-1" aria-hidden="true"
-                      action="{% url 'proje:proje_ekle' takim_slug=takim.slug %}" method="post">
+                      action="" method="post">
                     {% csrf_token %}
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Yeni Proje</h5>
+                                <h5 class="modal-title">Proje Düzenle</h5>
                                 <button type="button" class="close btn btn-round" data-dismiss="modal"
                                         aria-label="Close">
                                     <i class="material-icons">close</i>
@@ -388,57 +371,30 @@
                                         <div class="form-group row align-items-center">
                                             <label class="col-3">Ad</label>
                                             <input class="form-control col" type="text" placeholder="Proje Adı"
-                                                   name="ad"/>
+                                                   name="duzenle_ad" id="duzenle_ad"/>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-3">Açıklama</label>
                                             <textarea class="form-control col" rows="3"
                                                       placeholder="Proje Açıklaması"
-                                                      name="aciklama"></textarea>
+                                                      name="duzenle_aciklama" id="duzenle_aciklama"></textarea>
                                         </div>
                                         <hr>
                                         <h6>Zaman Aralığı</h6>
                                         <div class="form-group row align-items-center">
                                             <label class="col-3">Başlangıç Tarihi</label>
-                                            <input class="form-control col" type="text" name="baslangic_tarih"
-                                                   placeholder="Tarih Seçin" data-flatpickr
-                                                   data-alt-input="true"/>
+                                            <input class="form-control col" type="text" name="duzenle_baslangic_tarih"
+                                                   placeholder="Tarih Seçin" data-flatpickr id="duzenle_baslangic_tarih"
+                                                   data-alt-input="true" value=""/>
                                         </div>
                                         <div class="form-group row align-items-center">
                                             <label class="col-3">Bitiş Tarihi</label>
-                                            <input class="form-control col" type="text" name="bitis_tarih"
-                                                   placeholder="Tarih Seçin" data-flatpickr
+                                            <input class="form-control col" type="text" name="duzenle_bitis_tarih"
+                                                   placeholder="Tarih Seçin" data-flatpickr id="duzenle_bitis_tarih"
                                                    data-alt-input="true"/>
                                         </div>
                                         <div class="alert alert-warning text-small" role="alert">
                                             <span>Tarih aralığını istediğiniz zaman değiştirebilirsiniz.</span>
-                                        </div>
-                                        <hr>
-                                        <h6>Görünürlük</h6>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="visibility-everyonee" name="gizlilik"
-                                                           class="custom-control-input" value="herkese_acik" checked>
-                                                    <label class="custom-control-label"
-                                                           for="visibility-everyonee">Herkes</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="visibility-memberss" name="gizlilik"
-                                                           class="custom-control-input" value="takim_uyeleri">
-                                                    <label class="custom-control-label"
-                                                           for="visibility-memberss">Takım Üyeleri</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="visibility-mee" name="gizlilik"
-                                                           class="custom-control-input" value="sadece_ben">
-                                                    <label class="custom-control-label" for="visibility-mee">Ben</label>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -446,7 +402,7 @@
                             <!--end of modal body-->
                             <div class="modal-footer">
                                 <button role="button" class="btn btn-primary" type="submit">
-                                    Proje Oluştur
+                                    Proje Güncelle
                                 </button>
                             </div>
                         </div>

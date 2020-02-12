@@ -64,11 +64,17 @@
                                                         aria-expanded="false">
                                                     <i class="material-icons">more_vert</i>
                                                 </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="#">Yönet</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="#">Takımdan Ayrıl</a>
-                                                </div>
+                                                {% if request.user == takim.sahip %}
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" href="#">Yönet</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item text-danger" href="#">Takımı Sil</a>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item text-danger" href="#">Takımdan Ayrıl</a>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                             <div class="card-title">
                                                 <a href="{% url 'takim:takim_detay' takim_slug=takim.slug %}">
@@ -120,18 +126,18 @@
                                         <div class="card card-project">
 
                                             <div class="card-body">
-                                                <div class="dropdown card-options">
-                                                    <button class="btn-options" type="button"
-                                                            id="project-dropdown-button-4"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                        <i class="material-icons">more_vert</i>
-                                                    </button>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#">Güncelle</a>
-                                                        {#                                        <a class="dropdown-item" href="#">Paylaş</a>#}
-                                                    </div>
-                                                </div>
+                                                {#                                                <div class="dropdown card-options">#}
+                                                {#                                                    <button class="btn-options" type="button"#}
+                                                {#                                                            id="project-dropdown-button-4"#}
+                                                {#                                                            data-toggle="dropdown" aria-haspopup="true"#}
+                                                {#                                                            aria-expanded="false">#}
+                                                {#                                                        <i class="material-icons">more_vert</i>#}
+                                                {#                                                    </button>#}
+                                                {#                                                    <div class="dropdown-menu dropdown-menu-right">#}
+                                                {#                                                        <a class="dropdown-item" href="#">Güncelle</a>#}
+                                                {#                                        <a class="dropdown-item" href="#">Paylaş</a>#}
+                                                {#                                                    </div>#}
+                                                {#                                                </div>#}
                                                 <div class="card-title">
                                                     <a href="{% url 'proje:proje_detay' proje_slug=proje.slug %}">
                                                         <h5 data-filter-by="text">{{ proje.ad }}</h5>
@@ -224,19 +230,19 @@
                                                     <i class="material-icons">playlist_add_check</i>
                                                     <span>{{ gorev|gorev_kac_islem_var }}</span>
                                                 </div>
-                                                <div class="dropdown card-options">
-                                                    <button class="btn-options" type="button"
-                                                            id="task-dropdown-button-1"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                        <i class="material-icons">more_vert</i>
-                                                    </button>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#">Tamamlandı Olarak İşaretle</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Sil</a>
-                                                    </div>
-                                                </div>
+                                                {#                                                <div class="dropdown card-options">#}
+                                                {#                                                    <button class="btn-options" type="button"#}
+                                                {#                                                            id="task-dropdown-button-1"#}
+                                                {#                                                            data-toggle="dropdown" aria-haspopup="true"#}
+                                                {#                                                            aria-expanded="false">#}
+                                                {#                                                        <i class="material-icons">more_vert</i>#}
+                                                {#                                                    </button>#}
+                                                {#                                                    <div class="dropdown-menu dropdown-menu-right">#}
+                                                {#                                                        <a class="dropdown-item" href="#">Tamamlandı Olarak İşaretle</a>#}
+                                                {#                                                        <div class="dropdown-divider"></div>#}
+                                                {#                                                        <a class="dropdown-item text-danger" href="#">Sil</a>#}
+                                                {#                                                    </div>#}
+                                                {#                                                </div>#}
                                             </div>
                                         </div>
                                     </div>

@@ -43,10 +43,9 @@ def proje_ekle(request, takim_slug):
     aciklama = request.POST.get('aciklama')
     baslangic_tarih = request.POST.get('baslangic_tarih')
     bitis_tarih = request.POST.get('bitis_tarih')
-    gizlilik = request.POST.get('gizlilik')
     uyeler = request.POST.getlist('uyeler')  # bize liste olarak geldiği için
     yeni_proje = Proje(ad=ad, aciklama=aciklama, baslama_tarihi=baslangic_tarih, bitis_tarihi=bitis_tarih,
-                       gizlilik=gizlilik, takim=Takim.objects.get(slug=takim_slug))
+                       takim=Takim.objects.get(slug=takim_slug))
     yeni_proje.save()
     yeni_aktivite = Aktivite(proje=yeni_proje, kullanici=request.user, aktivite_tipi='olusturma',
                              aktivite="{} adlı projeyi oluşturdu".format(yeni_proje.ad))
@@ -96,16 +95,6 @@ def proje_dosya_ekle(request, proje_slug):
 
 
 @login_required
-def proje_ajax_islemler(request):
-    if request.method == 'POST' and request.is_ajax():  # eğer gelen istek ajax ve POST ise dedik
-        islem_tipi = request.POST.get('islem_tipi')  # ajax kısmında yolladığımız form_data içerisinden alıyoruz
-        if islem_tipi == 'proje_detay_getir':
-            print('proje detayları getiriliyor')
-            print(request.POST.get('proje_slug'))
-        return JsonResponse({'data': True})
-
-
-@login_required
 def proje_dosya_indir(request, dosya_slug):
     dosya = ProjeDosya.objects.get(slug=dosya_slug)
     if os.path.exists(dosya.dosya.path):
@@ -125,3 +114,14 @@ def proje_dosya_sil(request, dosya_slug):
     yeni_aktivite.save()
     messages.success(request, 'Dosya başarıyla silindi')
     return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': dosya.proje.slug}))
+
+
+@login_required
+def proje_ajax_islemler(request):
+    if request.method == 'POST' and request.is_ajax():  # eğer gelen istek ajax ve POST ise dedik
+        islem_tipi = request.POST.get('islem_tipi')  # ajax kısmında yolladığımız form_data içerisinden alıyoruz
+        if islem_tipi == 'proje_detay_getir':
+            proje = Proje.objects.get(slug=request.POST.get('proje_slug'))
+            return JsonResponse(
+                {'proje_adi': proje.ad, 'proje_aciklama': proje.aciklama, 'baslangic_tarihi': proje.baslama_tarihi,
+                 'bitis_tarihi': proje.bitis_tarihi})
