@@ -289,11 +289,11 @@
                                                                 <i class="material-icons">more_vert</i>
                                                             </button>
                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" href="#">İndir</a>
+                                                                <a class="dropdown-item" href="{% url 'gorev:gorev_dosya_indir' dosya_slug=dosya.slug %}">İndir</a>
                                                                 {% if request.user in gorev.uyeler.all or request.user == gorev.proje.takim.sahip %}
                                                                     <div class="dropdown-divider"></div>
                                                                     <a class="dropdown-item text-danger"
-                                                                       href="#">Sil</a>
+                                                                       href="{% url 'gorev:gorev_dosya_sil' dosya_slug=dosya.slug %}">Sil</a>
                                                                 {% endif %}
                                                             </div>
                                                         </div>

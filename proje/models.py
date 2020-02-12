@@ -58,17 +58,34 @@ class ProjeDosya(models.Model):
     yukleyen = models.ForeignKey(to='kullanici.Kullanici', related_name='proje_dosyalari', on_delete=models.CASCADE)
     ad = models.CharField(max_length=255, blank=True)
     content_type = models.TextField(null=True, blank=True)
-    path = models.FilePathField(null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Proje Dosyası'
         verbose_name_plural = 'Proje Dosyaları'
 
-    def __str__(self):
-        return self.proje.ad
+    def get_unique_slug(
+            self):  # slug'larımızın düzgün bir şekilde artması için yaptık. Bu sayede sürekli değişecek ve aynı isimde post geldiğinde hata almayacağız
+        sayi = 0
+        slug = slugify(unidecode(self.ad))
+        new_slug = slug
+        while ProjeDosya.objects.filter(slug=new_slug).exists():
+            sayi += 1
+            new_slug = "{}-{}".format(slug, sayi)
+        slug = new_slug
+        return slug
 
-    def save(self, *args, **kwargs):  # save edilmeden önce
+    def __str__(self):
+        return self.ad
+
+    def save(self, *args, **kwargs):  # save edilmeden önce,
         self.ad = os.path.basename(
             self.dosya.name)  # basename fonksiyonu ile içine verdiğimiz pathin (dosya.name) dosya adını verir
-        self.path = self.dosya.path
+        if self.id is None:
+            self.slug = self.get_unique_slug()
+        else:
+            proje_dosya = ProjeDosya.objects.get(slug=self.slug)
+            if proje_dosya.ad != self.ad:
+                self.slug = self.get_unique_slug()
+
         super(ProjeDosya, self).save(*args, **kwargs)

@@ -396,11 +396,12 @@
                                                                     <i class="material-icons">more_vert</i>
                                                                 </button>
                                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                                    <a class="dropdown-item" href="#">İndir</a>
+                                                                    <a class="dropdown-item"
+                                                                       href="{% url 'proje:proje_dosya_indir' dosya_slug=dosya.slug %}">İndir</a>
                                                                     {% if proje.takim.sahip == request.user %}
                                                                         <div class="dropdown-divider"></div>
                                                                         <a class="dropdown-item text-danger"
-                                                                           href="#">Sil</a>
+                                                                           href="{% url 'proje:proje_dosya_sil' dosya_slug=dosya.slug %}">Sil</a>
                                                                     {% endif %}
                                                                 </div>
                                                             </div>
@@ -1052,7 +1053,7 @@
                                 <!--end of modal body-->
                                 <div class="modal-footer">
                                     <button role="button" class="btn btn-primary" type="submit">
-                                       Görev Oluştur
+                                        Görev Oluştur
                                     </button>
                                 </div>
                             </div>

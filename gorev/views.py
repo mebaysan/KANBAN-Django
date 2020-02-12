@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
-from django.http import HttpResponseForbidden, JsonResponse
+from django.http import HttpResponseForbidden, JsonResponse, HttpResponse, Http404
 # Create your views here.
 from gorev.models import Gorev, GorevGrubu, Islem, Not, GorevDosya
 from kullanici.models import Kullanici
 from proje.models import Proje
 from aktivite.models import Aktivite
+import os
 
 
 @login_required
@@ -129,3 +130,25 @@ def gorev_sil(request, gorev_slug):
     gorev.delete()
     messages.success(request, '{} adlı görev başarıyla silindi'.format({gorev.ad}))
     return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': gorev.proje.slug}))
+
+
+@login_required
+def gorev_dosya_indir(request, dosya_slug):
+    dosya = GorevDosya.objects.get(slug=dosya_slug)
+    if os.path.exists(dosya.dosya.path):
+        with open(dosya.dosya.path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="{}".format(dosya.content_type))
+            response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(dosya.ad)
+            return response
+    raise Http404
+
+
+@login_required
+def gorev_dosya_sil(request, dosya_slug):
+    dosya = GorevDosya.objects.get(slug=dosya_slug)
+    dosya.delete()
+    yeni_aktivite = Aktivite(gorev=dosya.gorev, kullanici=request.user, aktivite_tipi='silme',
+                             aktivite="{} adlı dosyayı sildi".format(dosya.ad))
+    yeni_aktivite.save()
+    messages.success(request, 'Dosya başarıyla silindi')
+    return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': dosya.proje.slug}))

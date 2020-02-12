@@ -101,6 +101,27 @@ def proje_ajax_islemler(request):
         islem_tipi = request.POST.get('islem_tipi')  # ajax kısmında yolladığımız form_data içerisinden alıyoruz
         if islem_tipi == 'proje_detay_getir':
             print('proje detayları getiriliyor')
+            print(request.POST.get('proje_slug'))
         return JsonResponse({'data': True})
 
 
+@login_required
+def proje_dosya_indir(request, dosya_slug):
+    dosya = ProjeDosya.objects.get(slug=dosya_slug)
+    if os.path.exists(dosya.dosya.path):
+        with open(dosya.dosya.path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="{}".format(dosya.content_type))
+            response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(dosya.ad)
+            return response
+    raise Http404
+
+
+@login_required
+def proje_dosya_sil(request, dosya_slug):
+    dosya = ProjeDosya.objects.get(slug=dosya_slug)
+    dosya.delete()
+    yeni_aktivite = Aktivite(proje=dosya.proje, kullanici=request.user, aktivite_tipi='silme',
+                             aktivite="{} adlı dosyayı sildi".format(dosya.ad))
+    yeni_aktivite.save()
+    messages.success(request, 'Dosya başarıyla silindi')
+    return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': dosya.proje.slug}))

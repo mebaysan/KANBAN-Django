@@ -14,4 +14,6 @@ urlpatterns = [
          name='gorev_durum_degistir_inprogress'),
     path('gorev/durum/degistir/done/<slug:gorev_slug>/', views.gorev_islem_durum_degistir_basarili,
          name='gorev_durum_degistir_done'),
+    path('dosyalar/indir/<slug:dosya_slug>', views.gorev_dosya_indir, name='gorev_dosya_indir'),
+    path('dosyalar/sil/<slug:dosya_slug>', views.gorev_dosya_sil, name='gorev_dosya_sil'),
 ]

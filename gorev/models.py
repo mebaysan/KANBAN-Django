@@ -46,9 +46,9 @@ class GorevGrubu(models.Model):
 
 class Gorev(models.Model):
     gorev_durumlari = (
-        ('bitti', 'Görev Bitti'),       # Done
-        ('devam', 'Görev Devam Ediyor'), # InProgress
-        ('yapilacak','Görev Yapılmalı') # ToDos
+        ('bitti', 'Görev Bitti'),  # Done
+        ('devam', 'Görev Devam Ediyor'),  # InProgress
+        ('yapilacak', 'Görev Yapılmalı')  # ToDos
     )
     ad = models.CharField(max_length=255)
     aciklama = models.TextField()
@@ -58,7 +58,7 @@ class Gorev(models.Model):
     gorev_durum = models.CharField(max_length=11, choices=gorev_durumlari, default='yapilacak')
     proje = models.ForeignKey(Proje, related_name='gorevler', on_delete=models.SET_NULL, null=True)
     uyeler = models.ManyToManyField(to='kullanici.Kullanici', related_name='gorevler', null=True)
-    #gorev_grubu = models.ForeignKey(to='gorev.GorevGrubu', related_name='gorevler', null=True, on_delete=models.CASCADE)
+    # gorev_grubu = models.ForeignKey(to='gorev.GorevGrubu', related_name='gorevler', null=True, on_delete=models.CASCADE)
     slug = models.SlugField(blank=True)
 
     class Meta:
@@ -98,7 +98,7 @@ class Islem(models.Model):
     gorev = models.ForeignKey(Gorev, related_name='islemler', on_delete=models.SET_NULL, null=True)
     ad = models.CharField(max_length=255)
     islem_sureci = models.CharField(max_length=5, choices=islem_sureci_secenekleri, default='devam')
-    eklenme_tarihi = models.DateTimeField(auto_now_add=True,null=True)
+    eklenme_tarihi = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
         verbose_name = 'İşlem'
@@ -127,16 +127,34 @@ class GorevDosya(models.Model):
     gorev = models.ForeignKey(to='gorev.Gorev', related_name='dosyalar', on_delete=models.SET_NULL, null=True)
     dosya = models.FileField(upload_to='gorevler/dosyalar/')
     ad = models.CharField(max_length=255, blank=True)
-    yukleyen = models.ForeignKey(to='kullanici.Kullanici',related_name='gorev_dosyalari',on_delete=models.CASCADE)
+    yukleyen = models.ForeignKey(to='kullanici.Kullanici', related_name='gorev_dosyalari', on_delete=models.CASCADE)
     content_type = models.TextField(null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Görev Dosyası'
         verbose_name_plural = 'Görev Dosyaları'
 
+    def get_unique_slug(
+            self):  # slug'larımızın düzgün bir şekilde artması için yaptık. Bu sayede sürekli değişecek ve aynı isimde post geldiğinde hata almayacağız
+        sayi = 0
+        slug = slugify(unidecode(self.ad))
+        new_slug = slug
+        while GorevDosya.objects.filter(slug=new_slug).exists():
+            sayi += 1
+            new_slug = "{}-{}".format(slug, sayi)
+        slug = new_slug
+        return slug
+
     def __str__(self):
-        return self.gorev.ad
+        return self.ad
 
     def save(self, *args, **kwargs):
         self.ad = os.path.basename(self.dosya.name)
+        if self.id is None:
+            self.slug = self.get_unique_slug()
+        else:
+            gorev_dosya = GorevDosya.objects.get(slug=self.slug)
+            if gorev_dosya.ad != self.ad:
+                self.slug = self.get_unique_slug()
         super(GorevDosya, self).save(*args, **kwargs)
