@@ -85,7 +85,7 @@
                                 <!--end of content list head-->
                                 <div class="content-list-body">
                                     <form class="checklist">
-
+                                        {% csrf_token %}
                                         {% for islem in islemler %}
                                             <div class="row">
                                                 <div class="form-group col">
@@ -111,6 +111,8 @@
                                                 <!--end of form group-->
                                             </div>
                                         {% endfor %}
+                                        <input type="hidden" id="ajax_url"
+                                               value="{% url 'gorev:gorev_ajax_islemler' %}">
 
                                     </form>
                                     <div class="drop-to-delete">
@@ -289,7 +291,8 @@
                                                                 <i class="material-icons">more_vert</i>
                                                             </button>
                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" href="{% url 'gorev:gorev_dosya_indir' dosya_slug=dosya.slug %}">İndir</a>
+                                                                <a class="dropdown-item"
+                                                                   href="{% url 'gorev:gorev_dosya_indir' dosya_slug=dosya.slug %}">İndir</a>
                                                                 {% if request.user in gorev.uyeler.all or request.user == gorev.proje.takim.sahip %}
                                                                     <div class="dropdown-divider"></div>
                                                                     <a class="dropdown-item text-danger"
@@ -865,5 +868,6 @@
     </div>
 {% endblock icerik %}
 {% block ozel_js %}
+    <script src="{% static 'js/prepare_ajax.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/gorev_detay.js' %}"></script>
 {% endblock ozel_js %}

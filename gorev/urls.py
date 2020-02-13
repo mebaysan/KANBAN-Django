@@ -5,6 +5,7 @@ app_name = 'gorev'
 
 urlpatterns = [
     path('gorev_ekle/<slug:proje_slug>/', views.gorev_ekle, name='gorev_ekle'),
+    path('ajax/islemler/', views.gorev_ajax_islemler, name='gorev_ajax_islemler'),
     path('detay/<slug:gorev_slug>/', views.gorev_detay, name='gorev_detay'),
     path('detay/<slug:gorev_slug>/dosya/ekle/', views.gorev_dosya_ekle, name='gorev_dosya_ekle'),
     path('not_ekle/<slug:gorev_slug>/', views.not_ekle, name='not_ekle'),

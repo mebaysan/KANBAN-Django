@@ -152,3 +152,27 @@ def gorev_dosya_sil(request, dosya_slug):
     yeni_aktivite.save()
     messages.success(request, 'Dosya başarıyla silindi')
     return redirect(reverse('proje:proje_detay', kwargs={'proje_slug': dosya.proje.slug}))
+
+
+@login_required
+def gorev_ajax_islemler(request):
+    if request.method == 'POST' and request.is_ajax():
+        islem_tipi = request.POST.get('islem_tipi')
+        if islem_tipi == 'gorev_islem_tipi_degistir':
+            islem_pk = request.POST.get('islem_pk')
+            islem = Islem.objects.get(pk=islem_pk)
+            if islem.islem_sureci == 'bitti':
+                islem.islem_sureci = 'devam'
+                islem.save()
+                yeni_aktivite = Aktivite(gorev=islem.gorev, proje=islem.gorev.proje, kullanici=request.user,
+                                         aktivite_tipi='guncelleme',
+                                         aktivite="{} adlı işlemi yapım aşamasına aldı".format(islem.ad))
+                yeni_aktivite.save()
+            elif islem.islem_sureci == 'devam':
+                islem.islem_sureci = 'bitti'
+                islem.save()
+                yeni_aktivite = Aktivite(gorev=islem.gorev, proje=islem.gorev.proje, kullanici=request.user,
+                                         aktivite_tipi='guncelleme', aktivite="{} adlı işlemi bitirdi".format(islem.ad))
+                yeni_aktivite.save()
+            messages.success(request, 'İşlem başarıyla güncellendi')
+            return JsonResponse({'success': True})
