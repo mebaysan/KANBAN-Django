@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from kullanici.views import giris_yap
+from django.conf.urls import handler404
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
@@ -28,3 +29,5 @@ urlpatterns = [
                   path('projeler/', include('proje.urls')),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
                                                                                            document_root=settings.MEDIA_ROOT)
+
+handler404 = 'proje.views.handler404' # 404 hatası aldığımızda hangi app altındaki hangi view çalıştırılsın

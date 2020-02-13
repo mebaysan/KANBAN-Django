@@ -1,0 +1,17 @@
+{% extends 'utilities/layout.html' %}
+{% load static %}
+{% block icerik %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-7">
+                <div class="text-center">
+                    <h1 class="display-1 text-primary">4&#x1f635;4</h1>
+                    <p>
+                        Aradığınız sayfa bulunamadı. <a href="{% url 'kullanici:kullanici' %}">Profilinize dönmek veya
+                        giriş yapmak için tıklayın</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
