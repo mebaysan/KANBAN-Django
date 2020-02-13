@@ -68,11 +68,15 @@
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item" href="#">Yönet</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Takımı Sil</a>
+                                                        <a class="dropdown-item text-danger"
+                                                           href="{% url 'takim:takim_sil' takim_slug=takim.slug %}">Takımı
+                                                            Sil</a>
                                                     </div>
                                                 {% else %}
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item text-danger" href="#">Takımdan Ayrıl</a>
+                                                        <a class="dropdown-item text-danger"
+                                                           href="{% url 'takim:takim_ayril' takim_slug=takim.slug %}">Takımdan
+                                                            Ayrıl</a>
                                                     </div>
                                                 {% endif %}
                                             </div>
@@ -305,4 +309,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block ozel_js %}
+    <script src="{% static 'js/prepare_ajax.js' %}"></script>
+    <script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}

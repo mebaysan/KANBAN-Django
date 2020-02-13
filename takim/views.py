@@ -1,6 +1,6 @@
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect, get_object_or_404, reverse
-
+from django.shortcuts import render, redirect, get_object_or_404, reverse, HttpResponse
+from django.http import HttpResponseForbidden
 from kanban.local_settings import BASE_URL
 from takim.models import Takim
 from proje.models import Proje
@@ -75,3 +75,31 @@ def takim_uye_ekle_onay(request, takim_slug, token):
     kullanici.takimlar.add(takim)
     kullanici.save()
     return redirect(reverse('takim:takim_detay', kwargs={'takim_slug': takim_slug}))
+
+
+# toDO: Takımdan ayrıl, takımı sil, takımı yönet
+
+@login_required
+def takimdan_ayril(request, takim_slug):
+    takim = Takim.objects.get(slug=takim_slug)
+    takim.uyeler.remove(request.user)
+    takim.save()
+    messages.success(request, 'Başarıyla takımdan ayrıldınız')
+    return redirect('kullanici:kullanici')
+
+
+@login_required
+def takimi_sil(request, takim_slug):
+    takim = Takim.objects.get(slug=takim_slug)
+    if request.user == takim.sahip:
+        takim.delete()
+        takim.save()
+        messages.success(request, 'Takım başarıyla silindi')
+    else:
+        return HttpResponseForbidden()
+    return redirect('kullanici:kullanici')
+
+
+@login_required
+def takim_ajax_islemler(request):
+    pass

@@ -13,6 +13,7 @@ from django.conf import settings
 from django.http import HttpResponse, Http404
 import os
 
+
 @login_required
 def proje_detay(request, proje_slug):
     proje = get_object_or_404(Proje, slug=proje_slug)
@@ -133,9 +134,6 @@ def proje_ajax_islemler(request):
             proje.save()
             messages.success(request, 'Proje başarıyla güncellendi')
             return JsonResponse({'success': True})
-
-
-# toDO: Takımdan ayrıl, takımı sil, takımı yönet
 
 
 def handler404(request, exception):
