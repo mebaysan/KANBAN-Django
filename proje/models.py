@@ -13,7 +13,7 @@ class Proje(models.Model):
     olusturulma_tarihi = models.DateTimeField(auto_now_add=True)
     baslama_tarihi = models.DateField()
     bitis_tarihi = models.DateField()
-    takim = models.ForeignKey(Takim, related_name='projeler', on_delete=models.SET_NULL, null=True)
+    takim = models.ForeignKey(Takim, related_name='projeler', on_delete=models.CASCADE, null=True)
     uyeler = models.ManyToManyField(to='kullanici.Kullanici', related_name='projeler', null=True)
     slug = models.SlugField(blank=True)
 
@@ -47,7 +47,7 @@ class Proje(models.Model):
 
 
 class ProjeDosya(models.Model):
-    proje = models.ForeignKey(to='proje.Proje', related_name='dosyalar', on_delete=models.SET_NULL, null=True)
+    proje = models.ForeignKey(to='proje.Proje', related_name='dosyalar', on_delete=models.CASCADE, null=True)
     dosya = models.FileField(upload_to='projeler/dosyalar/')
     yukleyen = models.ForeignKey(to='kullanici.Kullanici', related_name='proje_dosyalari', on_delete=models.CASCADE)
     ad = models.CharField(max_length=255, blank=True)

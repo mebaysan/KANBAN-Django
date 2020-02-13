@@ -56,7 +56,7 @@ class Gorev(models.Model):
     baslama_tarihi = models.DateField()
     bitis_tarihi = models.DateField()
     gorev_durum = models.CharField(max_length=11, choices=gorev_durumlari, default='yapilacak')
-    proje = models.ForeignKey(Proje, related_name='gorevler', on_delete=models.SET_NULL, null=True)
+    proje = models.ForeignKey(Proje, related_name='gorevler', on_delete=models.CASCADE, null=True)
     uyeler = models.ManyToManyField(to='kullanici.Kullanici', related_name='gorevler', null=True)
     # gorev_grubu = models.ForeignKey(to='gorev.GorevGrubu', related_name='gorevler', null=True, on_delete=models.CASCADE)
     slug = models.SlugField(blank=True)
@@ -95,7 +95,7 @@ class Islem(models.Model):
         ('bitti', 'İşlem Bitti'),
         ('devam', 'İşlem Devam Ediyor')
     )
-    gorev = models.ForeignKey(Gorev, related_name='islemler', on_delete=models.SET_NULL, null=True)
+    gorev = models.ForeignKey(Gorev, related_name='islemler', on_delete=models.CASCADE, null=True)
     ad = models.CharField(max_length=255)
     islem_sureci = models.CharField(max_length=5, choices=islem_sureci_secenekleri, default='devam')
     eklenme_tarihi = models.DateTimeField(auto_now_add=True, null=True)
@@ -109,11 +109,11 @@ class Islem(models.Model):
 
 
 class Not(models.Model):
-    gorev = models.ForeignKey(Gorev, related_name='notlar', on_delete=models.SET_NULL, null=True)
+    gorev = models.ForeignKey(Gorev, related_name='notlar', on_delete=models.CASCADE, null=True)
     ad = models.CharField(max_length=255)
     aciklama = models.TextField()
     olusturulma_tarihi = models.DateTimeField(auto_now_add=True)
-    kullanici = models.ForeignKey(Kullanici, related_name='notlar', on_delete=models.SET_NULL, null=True)
+    kullanici = models.ForeignKey(Kullanici, related_name='notlar', on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'Not'
@@ -124,7 +124,7 @@ class Not(models.Model):
 
 
 class GorevDosya(models.Model):
-    gorev = models.ForeignKey(to='gorev.Gorev', related_name='dosyalar', on_delete=models.SET_NULL, null=True)
+    gorev = models.ForeignKey(to='gorev.Gorev', related_name='dosyalar', on_delete=models.CASCADE, null=True)
     dosya = models.FileField(upload_to='gorevler/dosyalar/')
     ad = models.CharField(max_length=255, blank=True)
     yukleyen = models.ForeignKey(to='kullanici.Kullanici', related_name='gorev_dosyalari', on_delete=models.CASCADE)
