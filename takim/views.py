@@ -1,6 +1,6 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404, reverse, HttpResponse
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, JsonResponse
 from kanban.local_settings import BASE_URL
 from takim.models import Takim
 from proje.models import Proje
@@ -77,8 +77,6 @@ def takim_uye_ekle_onay(request, takim_slug, token):
     return redirect(reverse('takim:takim_detay', kwargs={'takim_slug': takim_slug}))
 
 
-# toDO: Takımdan ayrıl, takımı sil, takımı yönet
-
 @login_required
 def takimdan_ayril(request, takim_slug):
     takim = Takim.objects.get(slug=takim_slug)
@@ -102,4 +100,16 @@ def takimi_sil(request, takim_slug):
 
 @login_required
 def takim_ajax_islemler(request):
-    pass
+    if request.method == 'POST' and request.is_ajax():
+        islem_tipi = request.POST.get('islem_tipi')
+        if islem_tipi == 'takim_detay_getir':
+            takim_slug = request.POST.get('takim_slug')
+            takim = Takim.objects.get(slug=takim_slug)
+            return JsonResponse({'success': True, 'takim_ad': takim.ad, 'takim_aciklama': takim.aciklama})
+        elif islem_tipi == 'takim_guncelle':
+            takim = Takim.objects.get(slug=request.POST.get('takim_slug'))
+            takim.ad = request.POST.get('takim_ad')
+            takim.aciklama = request.POST.get('takim_aciklama')
+            takim.save()
+            messages.success(request, 'Takım başarıyla güncellendi')
+            return JsonResponse({'success': True})

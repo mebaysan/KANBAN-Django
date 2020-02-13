@@ -53,7 +53,7 @@
                         </div>
                         <!--end of content list head-->
                         <div class="content-list-body row">
-
+                            <input type="hidden" id="ajax_url" value="{% url 'takim:takim_ajax_islemler' %}">
                             {% for takim in takimlar %}
                                 <div class="col-md-6">
                                     <div class="card card-team">
@@ -66,7 +66,9 @@
                                                 </button>
                                                 {% if request.user == takim.sahip %}
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#">Yönet</a>
+                                                        <a class="dropdown-item" href="#" data-toggle="modal"
+                                                           data-target="#team-manage-modal" id="takim_yonet_btn"
+                                                           data-slug="{{ takim.slug }}">Yönet</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item text-danger"
                                                            href="{% url 'takim:takim_sil' takim_slug=takim.slug %}">Takımı
@@ -306,6 +308,54 @@
                         </div>
                     </div>
                 </form>
+                <form class="modal fade" id="team-manage-modal" tabindex="-1" aria-hidden="true"
+                      method="post">
+                    {% csrf_token %}
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Takım Düzenle</h5>
+                                <button type="button" class="close btn btn-round" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                            <!--end of modal head-->
+                            <ul class="nav nav-tabs nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="team-add-details-tab" data-toggle="tab"
+                                       href="#team-add-details"
+                                       role="tab" aria-controls="team-add-details" aria-selected="true">Detaylar</a>
+                                </li>
+                            </ul>
+                            <div class="modal-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="team-add-details" role="tabpanel">
+                                        <h6>Takım Detayları</h6>
+                                        <div class="form-group row align-items-center">
+                                            <label class="col-3">Name</label>
+                                            <input class="form-control col" type="text" placeholder="Takım Adı"
+                                                   name="guncelle_ad" id="guncelle_takim_ad"/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-3">Description</label>
+                                            <textarea class="form-control col" rows="3" placeholder="Takım Açıklaması"
+                                                      name="guncelle_aciklama" id="guncelle_takim_aciklama"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end of modal body-->
+                            <div class="modal-footer">
+                                <input type="hidden" id="takim_guncelle_slug">
+                                <button id="takim_guncelle_btn" role="button" class="btn btn-primary" type="submit">
+                                    Güncelle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
