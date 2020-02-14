@@ -336,16 +336,8 @@
                 </form>
 
 
-
-
-
-
-
-
-
-
                 <form class="modal fade" id="project-manage-modal" tabindex="-1" aria-hidden="true"
-                       method="post">
+                      method="post">
                     {% csrf_token %}
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -385,13 +377,12 @@
                                             <label class="col-3">Başlangıç Tarihi</label>
                                             <input class="form-control col" type="text" name="duzenle_baslangic_tarih"
                                                    placeholder="Tarih Seçin" data-flatpickr id="duzenle_baslangic_tarih"
-                                                   data-alt-input="true" value=""/>
+                                            />
                                         </div>
                                         <div class="form-group row align-items-center">
                                             <label class="col-3">Bitiş Tarihi</label>
                                             <input class="form-control col" type="text" name="duzenle_bitis_tarih"
-                                                   placeholder="Tarih Seçin" data-flatpickr id="duzenle_bitis_tarih"
-                                                   data-alt-input="true"/>
+                                                   placeholder="Tarih Seçin" data-flatpickr id="duzenle_bitis_tarih"/>
                                         </div>
                                         <div class="alert alert-warning text-small" role="alert">
                                             <span>Tarih aralığını istediğiniz zaman değiştirebilirsiniz.</span>

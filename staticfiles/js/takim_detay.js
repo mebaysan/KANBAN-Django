@@ -1,6 +1,7 @@
+$("#duzenle_baslangic_tarih").flatpickr(); // bunları js kütüphanesi olarak kullanabilmemiz için init etmemiz gerekiyor
+$("#duzenle_bitis_tarih").flatpickr();
 $("#proje-yonet").on('click', function () {
     let proje_slug = $(this).attr('data-slug');
-    //toDo: modal açılınca proje detaylarını ajax ile getir ve formu doldur ( tarih formatları kaldı )
     let form_data = new FormData(); // FormData instance oluşturduk
     form_data.append('proje_slug', proje_slug); // form data'ya  değer ekledik (key-value)
     form_data.append('islem_tipi', 'proje_detay_getir');
